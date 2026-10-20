@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
     <title>HelloCuff — Font comparison</title>
     <meta name="description" content="Three Google Fonts directions for HelloCuff: Outfit, Plus Jakarta Sans, and Space Grotesk.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="fonts.css">
     <style>
-      :root { color-scheme: light; font-family: "Outfit", sans-serif; color: #142d55; background: #f4f8ff; font-synthesis: none; }
+      :root { color-scheme: light dark; font-family: "Outfit", sans-serif; color: #142d55; background: #f4f8ff; font-synthesis: none; }
       * { box-sizing: border-box; }
       body { margin: 0; }
       main { max-width: 1300px; padding: 48px 36px 64px; margin: auto; }
@@ -38,6 +39,15 @@
       .swatches { display: flex; flex-wrap: wrap; gap: 24px; }
       .swatch { min-width: 110px; font-size: 12px; line-height: 1.6; color: #4d678d; }
       .chip { display: block; width: 110px; height: 52px; border: 1px solid #d3dff0; border-radius: 9px; margin-bottom: 8px; }
+      @media (prefers-color-scheme: dark) {
+        :root { color: #e7f0ff; background: #0c1425; }
+        article { background: #121f34; border-color: #263a58; }
+        article:first-child { border-color: #94b9ff; }
+        a, .label span, h2 span { color: #94b9ff; }
+        .eyebrow, .intro, .label, .detail, .swatch { color: #a6b9d5; }
+        a:focus-visible { outline-color: #94b9ff; }
+        .chip { border-color: #58749b; }
+      }
       @media (max-width: 900px) { .fonts { grid-template-columns: 1fr; } .wordmark { font-size: 48px; } h2 { font-size: 34px; } }
       @media (max-width: 440px) { main { padding: 30px 20px 48px; } article { padding: 24px; } .wordmark { font-size: 40px; } h2 { font-size: 30px; } }
     </style>
@@ -47,10 +57,10 @@
       <a class="back" href="./">← HelloCuff landing page</a>
       <p class="eyebrow">HelloCuff · Brand exploration</p>
       <h1>Three ways to say hello.</h1>
-      <p class="intro">The same words, set in three Google Fonts. Outfit is the starting pick on the blue landing page; these are directions to compare, not a final brand guide.</p>
+      <p class="intro">The same words, set in three Google Fonts. Outfit is the current choice on the blue landing page; the alternatives stay here for comparison.</p>
       <section class="fonts" aria-label="Font comparisons">
         <article class="outfit">
-          <p class="label">01 · OUTFIT <span>Starting pick</span></p>
+          <p class="label">01 · OUTFIT <span>Current choice</span></p>
           <p class="wordmark">HelloCuff</p>
           <h2>Your next hello,<br><span>just a tap away.</span></h2>
           <p class="sample">A business card for your wrist.<br>A simple tap. A new connection.</p>
