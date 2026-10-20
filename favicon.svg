@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="18" fill="#142d55"/>
-  <path d="M42 19a18 18 0 1 0 0 26" fill="none" stroke="#b9deff" stroke-width="7" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="264" viewBox="0 0 256 264" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">HelloCuff</title>
+
+  <path d="M64 8H176C211 8 232 30 232 64V164C232 187 220 206 205 216L211 242C213 252 208 256 199 251L149 221H64C29 221 8 200 8 165V64C8 29 29 8 64 8Z" fill="#275EFE"/>
+  <circle cx="120" cy="116" r="46" fill="#B9DEFF"/>
+  <path d="M105 106Q112 116 105 126M117 99Q129 116 117 133M130 92Q147 116 130 140" fill="none" stroke="#142D55" stroke-width="8.5" stroke-linecap="round"/>
+
 </svg>

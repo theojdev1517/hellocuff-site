@@ -11,15 +11,21 @@
     <meta property="og:title" content="HelloCuff — Coming soon">
     <meta property="og:description" content="Your next hello, just a tap away. A business card for your wrist.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+    <link rel="manifest" href="site.webmanifest">
     <link rel="preload" href="fonts/outfit-variable.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=brand2">
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <span class="wordmark" aria-label="HelloCuff">HelloCuff<span class="wordmark-dot" aria-hidden="true">.</span></span>
+        <picture class="brand-logo">
+          <source media="(prefers-color-scheme: dark)" srcset="assets/hellocuff-logo-dark.svg">
+          <img src="assets/hellocuff-logo.svg" width="224" height="53" alt="HelloCuff">
+        </picture>
         <span class="header-note">A little closer to connected.</span>
       </header>
 

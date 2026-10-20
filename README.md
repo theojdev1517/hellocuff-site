@@ -10,4 +10,4 @@ Typography selected for now: Outfit for the text wordmark, headings and body. Un
 
 The landing page and font specimen automatically follow the browser/system light or dark preference through `prefers-color-scheme`; there is no popup or stored override. Dark mode uses a dark navy background and lighter blue text and accents.
 
-The page uses a live text wordmark while the selected speech-bubble logo concept is developed. The typography and blue colors are the current working choice; final brand canon is managed separately.
+The header uses the selected speech-bubble/NFC logo with an outlined Outfit wordmark, with separate light and dark SVG assets. Matching SVG/ICO favicons, Apple touch artwork and 192/512px icons are included. The complete brand record and non-web exports are maintained under the project's private `branding/` folder.
