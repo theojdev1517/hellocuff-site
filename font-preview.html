@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloCuff — Font comparison</title>
+    <meta name="description" content="Three Google Fonts directions for HelloCuff: Outfit, Plus Jakarta Sans, and Space Grotesk.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="fonts.css">
+    <style>
+      :root { color-scheme: light; font-family: "Outfit", sans-serif; color: #142d55; background: #f4f8ff; font-synthesis: none; }
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      main { max-width: 1300px; padding: 48px 36px 64px; margin: auto; }
+      a { color: #275efe; text-underline-offset: 4px; }
+      a:focus-visible { outline: 3px solid #275efe; outline-offset: 5px; }
+      .back { font-size: 14px; }
+      .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; margin: 54px 0 12px; color: #4d678d; }
+      h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 550; letter-spacing: -0.04em; margin: 0; }
+      .intro { color: #4d678d; font-size: 17px; line-height: 1.6; max-width: 650px; margin: 18px 0 36px; }
+      .fonts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+      article { padding: 28px 26px; background: white; border: 1px solid #d3dff0; border-radius: 18px; }
+      article:first-child { border-color: #275efe; }
+      .label { font-family: "Outfit", sans-serif; font-size: 12px; color: #4d678d; min-height: 38px; margin: 0; }
+      .label span { display: inline-block; color: #275efe; margin-left: 8px; }
+      .wordmark { font-size: clamp(32px, 3.5vw, 47px); font-weight: 750; letter-spacing: -0.045em; margin: 20px 0 26px; }
+      h2 { font-size: clamp(24px, 2.8vw, 34px); font-weight: 650; letter-spacing: -0.045em; line-height: 1.12; margin: 0 0 20px; }
+      h2 span { font-weight: 400; color: #275efe; }
+      .sample { font-size: 15px; line-height: 1.6; margin: 0 0 32px; }
+      .detail { color: #4d678d; font-size: 13px; line-height: 1.6; font-family: "Outfit", sans-serif; }
+      .detail a { display: inline-block; margin-top: 12px; }
+      .outfit { font-family: "Outfit", sans-serif; }
+      .jakarta { font-family: "Plus Jakarta Sans", sans-serif; }
+      .space { font-family: "Space Grotesk", sans-serif; }
+      .space .wordmark { font-weight: 700; }
+      .palette { margin-top: 48px; }
+      .palette h2 { font-size: 22px; font-weight: 500; margin-bottom: 18px; }
+      .swatches { display: flex; flex-wrap: wrap; gap: 24px; }
+      .swatch { min-width: 110px; font-size: 12px; line-height: 1.6; color: #4d678d; }
+      .chip { display: block; width: 110px; height: 52px; border: 1px solid #d3dff0; border-radius: 9px; margin-bottom: 8px; }
+      @media (max-width: 900px) { .fonts { grid-template-columns: 1fr; } .wordmark { font-size: 48px; } h2 { font-size: 34px; } }
+      @media (max-width: 440px) { main { padding: 30px 20px 48px; } article { padding: 24px; } .wordmark { font-size: 40px; } h2 { font-size: 30px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="./">← HelloCuff landing page</a>
+      <p class="eyebrow">HelloCuff · Brand exploration</p>
+      <h1>Three ways to say hello.</h1>
+      <p class="intro">The same words, set in three Google Fonts. Outfit is the starting pick on the blue landing page; these are directions to compare, not a final brand guide.</p>
+      <section class="fonts" aria-label="Font comparisons">
+        <article class="outfit">
+          <p class="label">01 · OUTFIT <span>Starting pick</span></p>
+          <p class="wordmark">HelloCuff</p>
+          <h2>Your next hello,<br><span>just a tap away.</span></h2>
+          <p class="sample">A business card for your wrist.<br>A simple tap. A new connection.</p>
+          <p class="detail">Friendly and rounded, with enough character to carry the brand on its own.<br><a href="https://fonts.google.com/specimen/Outfit">Outfit on Google Fonts</a></p>
+        </article>
+        <article class="jakarta">
+          <p class="label">02 · PLUS JAKARTA SANS</p>
+          <p class="wordmark">HelloCuff</p>
+          <h2>Your next hello,<br><span>just a tap away.</span></h2>
+          <p class="sample">A business card for your wrist.<br>A simple tap. A new connection.</p>
+          <p class="detail">A more polished, professional direction for both headlines and everyday text.<br><a href="https://fonts.google.com/specimen/Plus+Jakarta+Sans">Plus Jakarta Sans on Google Fonts</a></p>
+        </article>
+        <article class="space">
+          <p class="label">03 · SPACE GROTESK</p>
+          <p class="wordmark">HelloCuff</p>
+          <h2>Your next hello,<br><span>just a tap away.</span></h2>
+          <p class="sample">A business card for your wrist.<br>A simple tap. A new connection.</p>
+          <p class="detail">More angular and distinctive, giving HelloCuff a stronger technology feel.<br><a href="https://fonts.google.com/specimen/Space+Grotesk">Space Grotesk on Google Fonts</a></p>
+        </article>
+      </section>
+      <section class="palette" aria-label="Trial blue colors">
+        <h2>The blue direction</h2>
+        <div class="swatches">
+          <div class="swatch"><span class="chip" style="background:#142d55"></span>Navy<br>#142D55</div>
+          <div class="swatch"><span class="chip" style="background:#275efe"></span>Cobalt<br>#275EFE</div>
+          <div class="swatch"><span class="chip" style="background:#b9deff"></span>Sky<br>#B9DEFF</div>
+          <div class="swatch"><span class="chip" style="background:#f4f8ff"></span>Ice<br>#F4F8FF</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
