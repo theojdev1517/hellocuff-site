@@ -58,7 +58,7 @@ export const faqs: FaqEntry[] = [
     id: "included-profile",
     question: "What can I put on my card?",
     answer:
-      "Free includes one editable contact profile with your name, company, title, US phone number, public email, website, short bio and optional photo. Choose a preset color and a light or dark card style. Your name is required; you choose which optional details to include.",
+      "Free includes one editable contact profile with your name, company, title, US phone number, public email, website, short bio and optional photo. Choose a preset color. Your name is required; you choose which optional details to include.",
   },
   {
     id: "update-details",

@@ -133,9 +133,11 @@ export const logout = async () => {
   requireConfigured();
   return signOut(auth);
 };
-export const verifyEmail = async (user: User) => {
+export const verifyEmail = async (user: User, continueUrl?:string) => {
   requireConfigured();
-  return sendEmailVerification(user);
+  const continuation=continueUrl?validateContinuationUrl(continueUrl,{emulator,projectId:app.options.projectId||"",currentOrigin:location.origin}):null;
+  if(continueUrl&&!continuation)throw Error("Invalid continuation URL.");
+  return sendEmailVerification(user,continuation?{url:continuation,handleCodeInApp:false}:undefined);
 };
 export const resetEmail = async (email: string, continueUrl?: string) => {
   requireConfigured();

@@ -1,3 +1,4 @@
+import {website as uatWebsite,urlOK as uatUrlOK} from "../functions/uat-url.mjs";
 export const fields = [
   "name",
   "company",
@@ -435,8 +436,10 @@ export function toVcf(
   c: Contact,
   publicId: string,
   photo?: Uint8Array,
+  urlPolicy: "production" | "uat" = "production",
 ): string {
-  if (!safeWebsite(c.website))
+  const contactWebsite = urlPolicy === "uat" ? uatWebsite(c.website) : c.website;
+  if (!(urlPolicy === "uat" ? uatUrlOK(contactWebsite) : safeWebsite(contactWebsite)))
     throw Error("The contact website must be a safe HTTPS address.");
   const lines = [
     "BEGIN:VCARD",
@@ -450,7 +453,7 @@ export function toVcf(
   if (c.phone) lines.push(`TEL;TYPE=WORK,VOICE:${escapeVcf(c.phone)}`);
   if (c.publicEmail)
     lines.push(`EMAIL;TYPE=INTERNET:${escapeVcf(c.publicEmail)}`);
-  if (c.website) lines.push(`URL:${c.website}`);
+  if (contactWebsite) lines.push(`URL:${contactWebsite}`);
   if (c.bio) lines.push(`NOTE:${escapeVcf(c.bio)}`);
   if (photo) {
     if (

@@ -26,3 +26,39 @@
 .site-header.site-header-public{flex-wrap:wrap;gap:12px}.site-header-public nav{flex:0 1 auto;min-width:min(100%,290px);max-width:100%;margin-left:auto}.site-header-public .public-nav{flex-wrap:nowrap;gap:14px}.site-header-public .public-nav a{white-space:nowrap}
 
 @media(max-width:600px){.uc-public-page .uc-contact[data-theme=professional] .dp-identity{padding-left:17px}}
+/* Window all catalog choices; download previews only for the visible rows. */
+.uc-font-results{position:relative;padding:0;max-height:308px;overscroll-behavior:contain;scrollbar-gutter:stable}
+.uc-font-results .uc-font-spacer{padding:0;pointer-events:none;cursor:default}
+.uc-font-results .uc-font-option{position:absolute;left:0;right:0;box-sizing:border-box;padding:8px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:28px}
+/* The system preference controls account/marketing chrome, never a chosen card theme. */
+.app-chrome{--shell-bg:#f4f8ff;--shell-panel:#fff;--shell-text:#142d55;--shell-input:#fff;--shell-muted:#4d678d;--shell-line:#bdcce0;background:var(--shell-bg);color:var(--shell-text);min-height:100dvh;--muted:var(--shell-muted);--line:var(--shell-line);color-scheme:light}
+.app-chrome .site-header-bar,.app-chrome .account-menu-panel,.app-chrome .panel,.app-chrome dialog{background:var(--shell-panel);color:var(--shell-text);border-color:var(--shell-line)}
+.app-chrome :is(input,textarea,select){background:var(--shell-input);color:var(--shell-text);border-color:var(--shell-line)}
+.app-chrome button:not(.primary):not(.dp-save):not(.password-toggle),.app-chrome .uc-font-results{background:var(--shell-panel);color:var(--shell-text)}
+.app-chrome a:not(.primary):not(.sales-button):not(.dp-link){color:inherit}
+.app-chrome .uc-plan-card{position:relative;border:3px solid var(--shell-line);margin:0;max-width:none;padding:28px;display:flex;flex-direction:column;min-width:0}
+.app-chrome .uc-plan-card.selected{border-color:#275efe}.uc-plan-select{position:absolute;inset:0;margin:0;cursor:pointer;z-index:1}.uc-plan-card:focus-within{outline:3px solid #b45107;outline-offset:4px}.uc-plan-start{position:relative;z-index:2;margin-top:auto}.uc-plan-start button,.uc-plan-start a{width:100%;display:block;text-align:center}.uc-plan-card h2{font-size:26px}.uc-plan-card .pricing-plan-rate,.uc-plan-card ul{pointer-events:none}.uc-plan-card ul{padding-left:20px}.uc-plan-card .pricing-amount{white-space:normal}
+.app-chrome .uc-font-results li[data-active=true]{background:#dce8ff;color:#142d55}
+.uc-public-page.uc-wallpaper::before{mask-image:url('/assets/hellocuff-logo.svg');mask-size:220px 84px;mask-position:20px 20px}
+@media(prefers-color-scheme:dark){.app-chrome{--shell-bg:#0c1425;--shell-panel:#12213a;--shell-text:#e7f0ff;--shell-input:#0d192d;--shell-muted:#b7c8e2;--shell-line:#536782;color-scheme:dark}.app-chrome .notice,.app-chrome .uc-address-confirm{background:#172b48;color:#e7f0ff;border-color:#536782}.app-chrome .field-error,.app-chrome [role=alert]{color:#ffb9ad}.app-chrome .uc-step-heading:focus-visible{outline-color:#a3c7ff}.app-chrome button:not(.primary):hover{background:#213d64}.app-chrome .dev-banner{background:#20395e;color:#e7f0ff}}
+.uc-modal{width:min(720px,calc(100% - 28px));max-height:min(86dvh,900px);overflow:auto;border:1px solid var(--shell-line,#bdcce0);border-radius:22px;padding:28px;color:var(--shell-text,#142d55);background:var(--shell-panel,#fff);overscroll-behavior:contain}.uc-modal::backdrop{background:rgb(5 14 32/.62)}.uc-modal-heading{display:flex;align-items:flex-start;gap:20px;justify-content:space-between;position:sticky;top:-28px;margin:-4px 0 24px;padding:6px 0;background:inherit;z-index:2}.uc-modal-heading h2{font-size:26px;margin:0;max-width:calc(100% - 64px)}.uc-modal .uc-modal-close{flex:0 0 44px;min-width:44px;width:44px;height:44px;border-radius:50%;padding:10px;display:grid;place-items:center}.uc-policy-highlight{background:#e6efff;color:#142d55;box-shadow:0 0 0 8px #e6efff;border-radius:6px;scroll-margin-top:90px}.uc-modal section{scroll-margin-top:90px}.uc-modal .button-row{flex-wrap:wrap}
+@media(prefers-color-scheme:dark){.uc-policy-highlight{background:#29446c;color:#fff;box-shadow:0 0 0 8px #29446c}.uc-modal{--shell-panel:#12213a;--shell-text:#e7f0ff;--shell-line:#536782}}
+
+.uc-backup-offer { margin:1.25rem 0;padding:1rem;border:2px solid #1976d2;border-radius:1rem;background:var(--panel); }
+.uc-backup-offer input[type=checkbox] { width:1.4rem;height:1.4rem;flex:none; }
+.uc-verification { max-width:72rem;margin:1.5rem auto;padding:1.25rem; }
+.uc-view-card { display:flex;justify-content:flex-start;margin:1rem 0; }
+.uc-locked-feature { opacity:.85;min-height:44px; }
+.uc-account-lifecycle { margin:2rem auto;max-width:65rem; }
+.uc-modal-close { width:44px;min-width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:0; }
+
+.uc-option-locked{color:var(--shell-muted,#4d678d)}
+.app-chrome .uc-public-page .uc-font-notice button{background:var(--dp-card);color:var(--dp-text)}
+
+/* Keep editor navigation comfortably clickable independently of card theme. */
+.uc-editor-heading a, .uc-view-card a { display:inline-flex; align-items:center; min-height:44px; min-width:44px; padding:8px 12px; box-sizing:border-box; }
+.uc-editor-heading .button-row { gap:12px; }
+
+/* Shell guidance uses semantic colors; public-card appearance stays independent. */
+.app-chrome .uc-text-button { color:var(--shell-text,#142d55)!important; }
+.app-chrome .photo-editor .photo-help { color:var(--shell-muted,#53647c); }

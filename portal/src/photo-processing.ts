@@ -1,4 +1,5 @@
 import { validPhotoPolicy, type PhotoPolicy } from "./domain";
+import { inspectHeifHeader } from "./heif-header";
 
 export interface Crop {
   zoom: number;
@@ -14,10 +15,11 @@ export const defaultCrop: Crop = {
   rotation: 0,
 };
 export interface ImageHeader {
-  kind: "jpeg" | "png" | "webp";
+  kind: "jpeg" | "png" | "webp" | "heif";
   width: number;
   height: number;
   orientation: number;
+  maxDeclaredPixels?: number;
 }
 export interface PreparedPhoto {
   bitmap: ImageBitmap;
@@ -35,7 +37,7 @@ export interface ProcessedPhoto {
 }
 const invalid = () =>
   Error(
-    "This photo could not be opened. Choose a valid JPEG, PNG or WebP image.",
+    "This photo could not be opened. Choose a valid JPEG, PNG, WebP or HEIC/HEIF image.",
   );
 const text = (b: Uint8Array, start: number, count: number) =>
   String.fromCharCode(...b.subarray(start, start + count));
@@ -161,9 +163,7 @@ export function inspectImageHeader(bytes: Uint8Array): ImageHeader {
     if (width && height) return { kind: "jpeg", width, height, orientation };
   }
   if (size >= 12 && text(bytes, 4, 4) === "ftyp")
-    throw Error(
-      "HEIC/HEIF and AVIF photos are not supported in this editor yet. Choose a JPEG, PNG or WebP version; no external resizing is needed.",
-    );
+    return inspectHeifHeader(bytes);
   throw invalid();
 }
 
@@ -185,6 +185,7 @@ export function validateSource(
     header.width < 1 ||
     header.height < 1 ||
     header.width * header.height > policy.maxInputPixels ||
+    (header.maxDeclaredPixels ?? 0) > policy.maxInputPixels ||
     header.width > 65535 ||
     header.height > 65535
   )
@@ -307,6 +308,7 @@ export function cropMatrix(
 export async function preparePhoto(
   file: Blob,
   policy: PhotoPolicy,
+  signal?: AbortSignal,
 ): Promise<PreparedPhoto> {
   if (!validPhotoPolicy(policy))
     throw Error("Photo settings are unavailable. Try again later.");
@@ -317,8 +319,14 @@ export async function preparePhoto(
       file.size,
       policy,
     );
-  const header = inspectImageHeader(new Uint8Array(await file.arrayBuffer()));
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const header = inspectImageHeader(bytes);
   validateSource(header, file.size, policy);
+  if (signal?.aborted) throw new DOMException("Photo import canceled.", "AbortError");
+  if (header.kind === "heif") {
+    const { prepareHeif } = await import("./heif-decoder");
+    return prepareHeif(bytes, { ...header, kind: "heif", orientation: 1, maxDeclaredPixels:header.maxDeclaredPixels??header.width*header.height }, policy, signal);
+  }
   const rotated = header.orientation >= 5;
   const sourceWidth = rotated ? header.height : header.width;
   const sourceHeight = rotated ? header.width : header.height;

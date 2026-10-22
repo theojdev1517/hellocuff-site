@@ -16,6 +16,11 @@ export interface UatAccount {
   interval: Selection["interval"];
   lastOrderId: string;
   initialOrderId: string;
+  lifecycleState?:'active'|'pending-deletion'|'retired'|'invalid';
+  remainingGraceDays?:number;
+  lifecycleRevision?:number;
+  lifecycle?:{state:string;revision:number;deadlineAtMs:number;keepPublic:boolean};
+  billing?:{provider:'stripe-sandbox';subscriptionId?:string;cancelAtPeriodEnd?:boolean;status?:string};
 }
 export interface OwnerState {
   config: Config;
@@ -115,6 +120,8 @@ export function makeUatApi(auth: Auth) {
     },
     order: (id:string,selection:Selection,shipping:ShippingConfirmation|null,kind:"initial"|"plan-change"="initial") => request<{order:{id:string;selection:Selection;paid:false;status:"simulated";quote:{totalCents:number}};alreadyCompleted:boolean}>(kind === "initial"?"orders":"plan-changes",{method:"POST",body:{id,selection,acceptedPolicyVersion:policyVersion,...(kind === "initial"?{shipping}:{})},private:true}),
     getOrder:(id:string)=>request<{order:{id:string;paid:false;status:"simulated";quote:{totalCents:number};shipping?:ShippingConfirmation}}>("orders/"+id,{private:true}),
+    requestDeletion:(body:{id:string;revision:number;keepPublic:boolean;confirmation:string})=>request("account/deletion",{method:"POST",private:true,body}),
+    reactivate:(revision:number)=>request("account/reactivate",{method:"POST",private:true,body:{revision}}),
     addProfile: (label: string) =>
       request<{ id: string }>("profiles", {
         method: "POST",

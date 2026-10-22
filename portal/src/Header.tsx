@@ -202,7 +202,7 @@ export function Header({
                   </AppLink>
                   {owner.data ? (
                     <AppLink
-                      to={`${publicCardPrefix}${owner.data.account.publicId}`}
+                      to={`${publicCardPrefix}${owner.data.account.publicId}`} target="_blank" rel="noopener noreferrer"
                       aria-current={
                         route ===
                         `${publicCardPrefix}${owner.data.account.publicId}`

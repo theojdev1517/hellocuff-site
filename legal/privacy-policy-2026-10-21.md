@@ -1,6 +1,6 @@
 **HelloCuff Privacy Policy**
 
-**Effective Date:** [Insert Date]
+**Effective Date:** October 21, 2026
 
 Welcome to HelloCuff. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our NFC wearables, or manage your HelloCuff digital profile (collectively, the "Service"). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the Service.
 
@@ -58,5 +58,5 @@ We may update this Privacy Policy from time to time to reflect changes in our pr
 
 **9. Contact Us**
 If you have questions or comments about this Privacy Policy, please contact us at:
-**Email:** [Insert Support Email Address]
+**Email:** privacy@hellocuff.com
 **Mailing Address:** HelloCuff, [Insert Business Address, e.g., Parma, OH ZIP]

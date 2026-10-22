@@ -1,6 +1,7 @@
+import {website,urlOK} from "./uat-url.mjs";
 import {catalogFamilies} from "./uat-font-catalog.mjs";
 // Shared by the UAT browser and server. No production entitlement writes.
-export const policyVersion = "uat-2026-10-21-v2";
+export const policyVersion = "uat-2026-10-22-v3";
 export const planIds = ["free", "standard", "pro"];
 export const themeIds = [
   "professional",
@@ -199,48 +200,8 @@ export const plain = (s, max, multiline = false) =>
       ? /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/
       : /[<>\u0000-\u001f\u007f]/
   ).test(s);
-export function website(value) {
-  const s = value.trim();
-  if (!s) return "";
-  const normalized = /^[a-z][a-z0-9+.-]*:/i.test(s) ? s : `https://${s}`;
-  try {
-    const u = new URL(normalized);
-    if (
-      u.protocol !== "https:" ||
-      u.username ||
-      u.password ||
-      !u.hostname.includes(".") ||
-      /[<>\s\\]/.test(normalized)
-    )
-      return s;
-    return u.href;
-  } catch {
-    return s;
-  }
-}
-export function urlOK(s) {
-  if (s === "") return true;
-  if (
-    typeof s !== "string" ||
-    s.length > 300 ||
-    !s.startsWith("https://") ||
-    /[<>\s\\]/.test(s)
-  )
-    return false;
-  try {
-    const u = new URL(s);
-    return (
-      u.protocol === "https:" &&
-      !u.username &&
-      !u.password &&
-      /^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/i.test(u.hostname) &&
-      u.hostname.includes(".") &&
-      !u.hostname.includes("..")
-    );
-  } catch {
-    return false;
-  }
-}
+export {website,urlOK} from "./uat-url.mjs";
+
 export function phone(value) {
   const d = value.replace(/\D/g, "");
   return /^(1)?[2-9][0-9]{2}[2-9][0-9]{6}$/.test(d) ? `+1${d.slice(-10)}` : value.trim();

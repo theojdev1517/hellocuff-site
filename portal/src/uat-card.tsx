@@ -158,6 +158,7 @@ export function UatCard({
           {d.ctaLabel && safeCta && urlOK(safeCta) && (
             <a
               className="dp-link uc-cta"
+              target="_blank"
               href={safeCta}
               rel="noopener noreferrer"
             >

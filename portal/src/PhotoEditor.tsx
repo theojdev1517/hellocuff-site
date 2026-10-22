@@ -45,6 +45,7 @@ export function PhotoEditor({
   const [dragging, setDragging] = useState(false);
   const current = useRef<PreparedPhoto | null>(null);
   const task = useRef(0);
+  const importController = useRef<AbortController | null>(null);
   const admissionPaused =
     !policy.enabled ||
     policy.maxUploadsPerDay === 0 ||
@@ -52,6 +53,7 @@ export function PhotoEditor({
   useEffect(
     () => () => {
       task.current++;
+      importController.current?.abort();
       current.current?.close();
     },
     [],
@@ -232,10 +234,13 @@ export function PhotoEditor({
       return;
     }
     const sequence = ++task.current;
+    importController.current?.abort();
+    const controller = new AbortController();
+    importController.current = controller;
     setBusy(true);
     setError("");
     try {
-      const prepared = await preparePhoto(file, policy);
+      const prepared = await preparePhoto(file, policy, controller.signal);
       if (sequence !== task.current) {
         prepared.close();
         return;
@@ -298,12 +303,12 @@ export function PhotoEditor({
     }
   };
   return (
-    <section className="photo-editor" aria-label="Profile photo editor">
+    <section className="photo-editor" aria-label="Profile photo editor" aria-busy={busy}>
       <h3>Profile photo</h3>
       <p>
         Choose a phone photo, then position, zoom and rotate it in the frame. We
-        automatically optimize a web portrait and a smaller contact photo.
-        Originals are not retained.
+        automatically prepare it for your page and contact download.
+
       </p>
       {!policy.enabled && (
         <p role="status">Photos are not enabled for this plan yet.</p>
@@ -326,7 +331,7 @@ export function PhotoEditor({
         <input
           className="uc-file-input"
           type="file"
-          accept="image/jpeg,image/png,image/webp"
+          accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif"
           disabled={disabled || busy || admissionPaused}
           onChange={(e) => {
             const file = e.target.files?.[0];
@@ -335,9 +340,10 @@ export function PhotoEditor({
           }}
         />
       </label>
+      
+      {busy && !image && <p role="status">Opening your photo. HEIC photos may take a few moments.</p>}
       <p className="photo-help">
-        JPEG, PNG and WebP. HEIC/HEIF is not supported yet. Compression is
-        optimized and may change image detail.
+        JPEG, PNG, WebP and HEIC/HEIF.
       </p>
       {image && (
         <div className="photo-crop">
@@ -395,7 +401,8 @@ export function PhotoEditor({
             <button type="button" disabled={disabled||busy} onClick={()=>move(0,-.05)}>Move up</button>
             <button type="button" disabled={disabled||busy} onClick={()=>move(0,.05)}>Move down</button>
           </div>
-          <p className="photo-help">{crop.zoom<=1?"Zoom in to create more room to move the photo in every direction.":"Drag or use the Move buttons to position your photo."}</p>
+          
+      <p className="photo-help">{crop.zoom<=1?"Zoom in to create more room to move the photo in every direction.":"Drag or use the Move buttons to position your photo."}</p>
           <div className="photo-buttons photo-transform-controls">
             <button
               type="button"
@@ -428,7 +435,7 @@ export function PhotoEditor({
               {busy ? "Preparing photo..." : "Save"}
             </button>
             <button type="button" disabled={busy} onClick={close}>
-              Cancel crop
+              Cancel
             </button>
           </div>
         </div>

@@ -14,6 +14,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const project = "hellocuff-e8dec";
 const appId = "1:416465164479:web:c1056c6e6688935b648e0a";
 const activated = process.argv.includes("--activate");
+const integrations = process.argv.includes("--integrations");
+if(integrations&&!activated)throw Error("Connected sandbox artifact requires explicit photo activation.");
 // A public SDK storageBucket string is not proof that a bucket exists. Require
 // the operator's explicit reviewed bucket for an enabled next-build artifact.
 const photoBucket = process.env.HELLOCUFF_PHOTO_STORAGE_BUCKET || "";
@@ -38,6 +40,8 @@ const env = {
   ...process.env,
   VITE_USE_EMULATORS: "false",
   VITE_UAT_SIMULATION: "true",
+  VITE_UAT_PAYMENTS: integrations ? "stripe-sandbox" : "mock",
+  VITE_UAT_MODERATION: integrations ? "true" : "false",
   VITE_ENABLE_DESIGN_PREVIEW: "true",
   VITE_ENABLE_MOCK_CHECKOUT: "false",
   VITE_FIREBASE_PROJECT_ID: project,
