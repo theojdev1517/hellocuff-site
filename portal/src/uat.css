@@ -1,0 +1,365 @@
+.uc-plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+.uc-plans .panel {
+  display: flex;
+  flex-direction: column;
+}
+.uc-plans ul {
+  padding-left: 20px;
+  line-height: 1.8;
+  flex: 1;
+}
+.uc-rate {
+  font-size: 32px;
+  font-weight: 650;
+}
+.uc-rate small {
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+}
+.uc-interval {
+  border: 0;
+  padding: 0;
+}
+.uc-interval label {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-right: 20px;
+  align-items: center;
+}
+.uc-interval input,
+.uc-check input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin: 0;
+}
+.uc-check {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  line-height: 1.5;
+  margin: 20px 0;
+}
+.uc-check > span {
+  flex: 1;
+  min-width: 0;
+}
+.uc-footer {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.uc-footer > span {
+  margin-left: auto;
+}
+.uc-order {
+  display: grid;
+  gap: 15px;
+}
+.uc-order > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+.uc-order dd {
+  margin: 0;
+  white-space: nowrap;
+}
+.uc-order > div:last-child {
+  font-weight: 700;
+  border-top: 1px solid #b4c5df;
+  padding-top: 18px;
+}
+.uc-editor {
+  max-width: 1280px;
+  width: calc(100% - 64px);
+  margin: 40px auto 64px;
+}
+.uc-editor-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.uc-publication {
+  font-weight: 650;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: inline-block;
+}
+.uc-publication.unpublished {
+  background: #fff0d2;
+  color: #6d4100;
+  border: 1px solid #a06913;
+}
+.uc-publication.published {
+  background: #e6f5e9;
+  color: #1e602e;
+  border: 1px solid #4b865a;
+}
+.uc-edit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.uc-preview {
+  position: sticky;
+  top: 110px;
+  min-width: 0;
+}
+.uc-preview .dp-stage {
+  padding: 22px;
+}
+.uc-editor select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #8190a7;
+  border-radius: 8px;
+  background: #fff;
+  color: #142d55;
+}
+.uc-editor label {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+.uc-editor .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.uc-editor .form-grid .full {
+  grid-column: 1/-1;
+}
+.uc-editor label > .hint {
+  display: inline;
+  font-size: 12px;
+  font-weight: 400;
+}
+.uc-editor .form-grid label {
+  display: block;
+}
+.uc-editor .form-grid input,
+.uc-editor .form-grid textarea {
+  display: block;
+  margin-top: 7px;
+  width: 100%;
+}
+.uc-editor fieldset {
+  margin: 22px 0;
+  border: 1px solid #b4c5df;
+  border-radius: 10px;
+  padding: 16px;
+  min-width: 0;
+}
+.uc-editor .field-error {
+  color: #aa1f35;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.uc-bio {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.uc-logo {
+  width: auto;
+  height: auto;
+  max-width: 190px;
+  max-height: 80px;
+  object-fit: contain;
+}
+.uc-avatar {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 16px;
+  border: 2px solid var(--dp-detail);
+}
+.uc-logo-preview {
+  max-width: 260px;
+  max-height: 130px;
+  object-fit: contain;
+  background: white;
+  margin: 10px 0;
+}
+.uc-stage {
+  --dp-detail: var(--uc-detail);
+}
+.uc-contact .dp-kicker,
+.uc-contact .dp-details a {
+  color: var(--uc-detail);
+}
+.uc-contact .dp-card-masthead {
+  color: var(--uc-on-accent);
+}
+.uc-contact[data-theme="backstage"] .dp-identity,
+.uc-contact[data-theme="backstage"] .dp-title,
+.uc-contact[data-theme="backstage"] .dp-company,
+.uc-contact[data-theme="backstage"] h2 {
+  color: var(--uc-on-accent);
+}
+.uc-contact .dp-save,
+.uc-contact .dp-save:hover {
+  color: var(--uc-on-accent);
+}
+.uc-contact[data-theme="minimal"] .dp-card-masthead,
+.uc-contact[data-theme="industrial"] .dp-card-masthead,
+.uc-contact[data-theme="retro"] .dp-card-masthead {
+  color: var(--uc-detail);
+}
+.uc-contact .uc-cta {
+  display: block;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 13px 17px;
+  min-height: 48px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.uc-wallpaper {
+  background-color: var(--dp-tint);
+  background-image: url("/assets/hellocuff-icon.svg");
+  background-repeat: repeat;
+  background-size: 66px;
+  background-blend-mode: soft-light;
+}
+.uc-public {
+  max-width: 680px;
+  width: calc(100% - 32px);
+  margin: 32px auto;
+}
+.uc-public-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin: 20px 0;
+  font-size: 13px;
+}
+.uc-picker-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  gap: 16px;
+  max-width: 360px;
+}
+.uc-color-plane {
+  height: 180px;
+  position: relative;
+  touch-action: none;
+  border: 1px solid #65748c;
+  border-radius: 8px;
+  cursor: crosshair;
+}
+.uc-color-plane > span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px black;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.uc-editor .uc-hue-label {
+  font-size: 12px;
+  margin: 0;
+  align-items: center;
+  justify-items: center;
+}
+.uc-hue {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 24px !important;
+  height: 150px;
+  accent-color: #2347bd;
+}
+.uc-rgb {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.uc-picker .hint {
+  margin-top: 12px;
+}
+.uc-editor input[type="file"] {
+  width: 100%;
+  padding: 8px;
+}
+.uc-contact[data-theme="playful"] .dp-mark {
+  border-color: var(--uc-on-accent);
+}
+@media (max-width: 950px) {
+  .uc-edit-grid {
+    grid-template-columns: 1fr;
+  }
+  .uc-preview {
+    position: static;
+  }
+  .uc-plans {
+    grid-template-columns: 1fr;
+  }
+  .uc-plans .panel {
+    max-width: none;
+  }
+}
+@media (max-width: 480px) {
+  .uc-editor {
+    width: calc(100% - 32px);
+    margin-top: 24px;
+  }
+  .uc-editor-heading {
+    display: block;
+  }
+  .uc-editor .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .uc-edit-grid > .panel {
+    padding: 20px 16px;
+  }
+  .uc-preview .dp-stage {
+    padding: 12px;
+  }
+  .uc-public .dp-stage {
+    padding: 14px;
+  }
+  .uc-order {
+    font-size: 14px;
+  }
+  .uc-editor .button-row {
+    align-items: stretch;
+  }
+  .uc-editor .button-row > * {
+    flex: 1;
+  }
+  .uc-check a {
+    display: inline;
+  }
+  .uc-public-links {
+    flex-wrap: wrap;
+  }
+}
+
+.uc-editor fieldset.uc-editor-controls {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.uc-editor [hidden] {
+  display: none;
+}
+
+.uc-stage.uc-wallpaper[data-appearance="dark"] {
+  background-image: url("/assets/hellocuff-icon.svg");
+  background-color: #090f18;
+  background-blend-mode: soft-light;
+}

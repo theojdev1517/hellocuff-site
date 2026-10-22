@@ -1,0 +1,664 @@
+@font-face {
+  font-family: "DP Jakarta";
+  src: url("/fonts/plusjakartasans-variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DP Space";
+  src: url("/fonts/spacegrotesk-variable.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: swap;
+}
+.dp-page {
+  width: min(1120px, calc(100% - 64px));
+  margin: auto;
+  padding: 44px 0 64px;
+}
+.dp-intro {
+  margin-bottom: 30px;
+}
+.dp-intro h1 {
+  margin-bottom: 14px;
+}
+.dp-intro > p:last-child {
+  color: var(--sales-muted, #4d678d);
+  font-size: 17px;
+}
+.dp-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sales-muted, #4d678d);
+}
+.dp-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  align-items: start;
+  gap: 30px;
+}
+.dp-controls {
+  border: 1px solid var(--sales-line, #d3dff0);
+  background: var(--sales-surface, #fff);
+  border-radius: 20px;
+  padding: 24px;
+}
+.dp-controls > label,
+.dp-appearance legend {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.dp-controls select {
+  width: 100%;
+  min-height: 46px;
+  color: var(--sales-text, #142d55);
+  background: var(--sales-surface, #fff);
+  border: 1px solid #8190a7;
+  border-radius: 9px;
+  padding: 10px 8px;
+  margin: 0 0 23px;
+}
+.dp-appearance {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.dp-appearance label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 0 15px 0 0;
+  cursor: pointer;
+}
+.dp-appearance input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #2347bd;
+}
+.dp-selection {
+  font-size: 13px;
+  line-height: 1.5;
+  padding-top: 18px;
+  border-top: 1px solid var(--sales-line, #d3dff0);
+  margin: 18px 0 10px;
+}
+.dp-caption {
+  color: var(--sales-muted, #4d678d);
+  font-size: 12px;
+  margin: 0;
+}
+.dp-stage {
+  --dp-card: #fff;
+  --dp-text: #182338;
+  --dp-muted: #526079;
+  --dp-rule: #8190a7;
+  --dp-detail: var(--dp-accent);
+  border-radius: 26px;
+  background: #e9edf4;
+  padding: 34px;
+  min-width: 0;
+}
+.dp-stage[data-appearance="dark"] {
+  --dp-card: #151f2e;
+  --dp-text: #eff3fb;
+  --dp-muted: #b9c5d6;
+  --dp-rule: #63758d;
+  --dp-detail: var(--dp-glow);
+  background: #090f18;
+}
+.dp-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 560px;
+  margin: auto;
+  background: var(--dp-card);
+  color: var(--dp-text);
+  border: 1px solid var(--dp-rule);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -26px #02081180;
+  font-family: "DP Jakarta", "Segoe UI", sans-serif;
+}
+.dp-contact p {
+  line-height: 1.55;
+}
+.dp-card-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: var(--dp-accent);
+  color: #fff;
+  padding: 22px 30px;
+}
+.dp-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 600;
+}
+.dp-masthead-word {
+  font-size: 32px;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  margin-left: auto;
+}
+.dp-decoration {
+  display: none;
+}
+.dp-identity {
+  padding: 28px 30px 0;
+  min-width: 0;
+}
+.dp-kicker {
+  color: var(--dp-detail);
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+.dp-contact h2 {
+  color: var(--dp-text);
+  font-size: clamp(27px, 3.4vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  margin: 0 0 12px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.dp-title,
+.dp-company {
+  font-size: 14px;
+  color: var(--dp-muted);
+  margin-bottom: 4px;
+}
+.dp-company {
+  font-weight: 650;
+}
+.dp-bio {
+  margin: 22px 30px 0;
+  font-size: 15px;
+}
+.dp-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  border-top: 1px solid var(--dp-rule);
+  padding-top: 22px;
+  margin: 24px 30px;
+  min-width: 0;
+}
+.dp-details > div {
+  min-width: 0;
+}
+.dp-details > div:last-child {
+  grid-column: 1 / -1;
+}
+.dp-details dt {
+  color: var(--dp-muted);
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+.dp-details dd {
+  font-size: 14px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.dp-actions {
+  display: grid;
+  gap: 10px;
+  margin: 0 30px 28px;
+}
+.dp-actions button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 17px;
+  font-size: 14px;
+  font-weight: 650;
+  border-radius: 10px;
+  transition: none;
+  text-align: left;
+}
+.dp-actions .dp-save,
+.dp-actions .dp-save:hover {
+  background: var(--dp-accent);
+  border: 1px solid var(--dp-accent);
+  color: #fff;
+}
+.dp-actions .dp-link,
+.dp-actions .dp-link:hover {
+  background: var(--dp-card);
+  border: 1px solid var(--dp-rule);
+  color: var(--dp-text);
+}
+.dp-actions svg {
+  flex-shrink: 0;
+}
+.dp-decoration svg {
+  width: 1em;
+  height: 1em;
+}
+.dp-contact button:focus-visible {
+  outline: 3px solid var(--dp-detail);
+  outline-offset: 3px;
+}
+.dp-sample-link {
+  color: var(--dp-muted);
+  font-size: 12px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.dp-card-footer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-top: 1px solid var(--dp-rule);
+  padding: 15px 30px;
+  color: var(--dp-muted);
+  font-size: 10px;
+}
+/* Professional: a clear masthead, restrained type and paired details. */
+.dp-contact[data-theme="professional"] .dp-identity {
+  border-left: 5px solid var(--dp-accent);
+  padding-left: 25px;
+}
+/* Minimal: no cover panel, centered identity, open space and simple rules. */
+.dp-contact[data-theme="minimal"] {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding-top: 26px;
+  font-family: Outfit, sans-serif;
+}
+.dp-contact[data-theme="minimal"] .dp-card-masthead {
+  background: transparent;
+  color: var(--dp-detail);
+  justify-content: center;
+  padding: 10px 30px;
+}
+.dp-contact[data-theme="minimal"] .dp-masthead-word {
+  display: none;
+}
+.dp-contact[data-theme="minimal"] .dp-mark {
+  width: 46px;
+  height: 46px;
+  font-weight: 400;
+}
+.dp-contact[data-theme="minimal"] .dp-identity,
+.dp-contact[data-theme="minimal"] .dp-bio {
+  text-align: center;
+}
+.dp-contact[data-theme="minimal"] .dp-kicker {
+  display: none;
+}
+.dp-contact[data-theme="minimal"] h2 {
+  font-weight: 450;
+  font-size: 34px;
+}
+.dp-contact[data-theme="minimal"] .dp-details {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.dp-contact[data-theme="minimal"] .dp-details > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--dp-rule);
+}
+.dp-contact[data-theme="minimal"] .dp-details dt {
+  font-size: 12px;
+}
+.dp-contact[data-theme="minimal"] .dp-actions button {
+  border-radius: 0;
+}
+/* Playful: colored bubble cover, rounded paper and an off-center name plate. */
+.dp-contact[data-theme="playful"] {
+  border: 2px solid var(--dp-detail);
+  border-radius: 36px 14px 36px 14px;
+  font-family: Outfit, sans-serif;
+}
+.dp-contact[data-theme="playful"] .dp-card-masthead {
+  min-height: 125px;
+  border-radius: 0 0 55% 0;
+  padding-right: 35px;
+}
+.dp-contact[data-theme="playful"] .dp-mark {
+  border: 2px solid #fff;
+  border-radius: 18px 18px 3px 18px;
+  transform: rotate(-8deg);
+}
+.dp-contact[data-theme="playful"] .dp-decoration {
+  display: block;
+  font-size: 42px;
+}
+.dp-contact[data-theme="playful"] .dp-masthead-word {
+  display: none;
+}
+.dp-contact[data-theme="playful"] .dp-identity {
+  padding-top: 26px;
+}
+.dp-contact[data-theme="playful"] .dp-kicker {
+  border: 1px solid var(--dp-detail);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 6px 10px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.dp-contact[data-theme="playful"] h2 {
+  font-size: 40px;
+  font-weight: 650;
+}
+.dp-contact[data-theme="playful"] .dp-details {
+  border-top: 0;
+  gap: 12px;
+}
+.dp-contact[data-theme="playful"] .dp-details > div {
+  border: 1px solid var(--dp-rule);
+  border-radius: 15px;
+  padding: 12px;
+}
+.dp-contact[data-theme="playful"] .dp-actions button {
+  border-radius: 30px;
+}
+/* Backstage: bold poster type, a spotlight title and ticket edges. */
+.dp-contact[data-theme="backstage"] {
+  border: 2px solid var(--dp-detail);
+  border-radius: 2px;
+  font-family: "DP Space", sans-serif;
+}
+.dp-contact[data-theme="backstage"] .dp-card-masthead {
+  padding: 16px 26px;
+  border-bottom: 5px double #fff;
+}
+.dp-contact[data-theme="backstage"] .dp-mark {
+  border-radius: 0;
+  border: 0;
+  font-size: 28px;
+}
+.dp-contact[data-theme="backstage"] .dp-masthead-word {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 22px;
+}
+.dp-contact[data-theme="backstage"] .dp-identity {
+  background: var(--dp-accent);
+  padding: 22px 30px 30px;
+  color: #fff;
+}
+.dp-contact[data-theme="backstage"] .dp-kicker,
+.dp-contact[data-theme="backstage"] .dp-title,
+.dp-contact[data-theme="backstage"] .dp-company,
+.dp-contact[data-theme="backstage"] h2 {
+  color: #fff;
+}
+.dp-contact[data-theme="backstage"] h2 {
+  font-size: clamp(38px, 5vw, 54px);
+  text-transform: uppercase;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+.dp-contact[data-theme="backstage"] .dp-details {
+  border-top: 2px dashed var(--dp-detail);
+  grid-template-columns: 1fr;
+}
+.dp-contact[data-theme="backstage"] .dp-details > div {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+}
+.dp-contact[data-theme="backstage"] .dp-details dt {
+  text-transform: uppercase;
+}
+.dp-contact[data-theme="backstage"] .dp-actions button {
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.dp-contact[data-theme="backstage"] .dp-card-footer {
+  border-top-style: dashed;
+}
+/* Industrial: numbered-grid cues, squared controls and monospace labels. */
+.dp-contact[data-theme="industrial"] {
+  border: 2px solid var(--dp-detail);
+  border-radius: 0;
+  font-family: "DP Space", sans-serif;
+}
+.dp-contact[data-theme="industrial"] .dp-card-masthead {
+  background: var(--dp-card);
+  color: var(--dp-detail);
+  border-bottom: 8px solid var(--dp-detail);
+  padding: 18px 24px;
+}
+.dp-contact[data-theme="industrial"] .dp-mark {
+  border-radius: 0;
+  border: 2px solid var(--dp-detail);
+}
+.dp-contact[data-theme="industrial"] .dp-masthead-word {
+  font-family: ui-monospace, monospace;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.dp-contact[data-theme="industrial"] .dp-kicker {
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+.dp-contact[data-theme="industrial"] .dp-kicker::before {
+  content: "01 / ";
+}
+.dp-contact[data-theme="industrial"] h2 {
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+.dp-contact[data-theme="industrial"] .dp-details {
+  margin-inline: 0;
+  padding: 0;
+  gap: 0;
+  border-bottom: 1px solid var(--dp-rule);
+}
+.dp-contact[data-theme="industrial"] .dp-details > div {
+  padding: 16px 24px;
+  border-right: 1px solid var(--dp-rule);
+}
+.dp-contact[data-theme="industrial"] .dp-details > div:last-child {
+  border-top: 1px solid var(--dp-rule);
+  border-right: 0;
+}
+.dp-contact[data-theme="industrial"] .dp-details dt {
+  font-family: ui-monospace, monospace;
+  text-transform: uppercase;
+}
+.dp-contact[data-theme="industrial"] .dp-actions button {
+  border-radius: 0;
+}
+.dp-contact[data-theme="industrial"] .dp-card-footer {
+  font-family: ui-monospace, monospace;
+  text-transform: uppercase;
+}
+/* Retro: serif stationery, double frame, inset seal and ornamental dividers. */
+.dp-contact[data-theme="retro"] {
+  border: 6px double var(--dp-detail);
+  border-radius: 28px 28px 3px 3px;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.dp-contact[data-theme="retro"] .dp-card-masthead {
+  background: transparent;
+  color: var(--dp-detail);
+  padding: 24px 30px 0;
+  justify-content: center;
+}
+.dp-contact[data-theme="retro"] .dp-mark {
+  width: 66px;
+  height: 66px;
+  border: 4px double var(--dp-detail);
+}
+.dp-contact[data-theme="retro"] .dp-masthead-word {
+  display: none;
+}
+.dp-contact[data-theme="retro"] .dp-decoration {
+  display: block;
+  position: absolute;
+  font-size: 18px;
+  margin-left: 110px;
+}
+.dp-contact[data-theme="retro"] .dp-identity {
+  text-align: center;
+}
+.dp-contact[data-theme="retro"] .dp-kicker {
+  text-transform: none;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.dp-contact[data-theme="retro"] h2 {
+  font-weight: 400;
+  font-size: 38px;
+  letter-spacing: -0.04em;
+}
+.dp-contact[data-theme="retro"] .dp-company {
+  font-style: italic;
+  font-weight: 400;
+}
+.dp-contact[data-theme="retro"] .dp-bio {
+  text-align: center;
+}
+.dp-contact[data-theme="retro"] .dp-details {
+  grid-template-columns: 1fr;
+  border-top: 3px double var(--dp-rule);
+  text-align: center;
+  gap: 16px;
+}
+.dp-contact[data-theme="retro"] .dp-details dt {
+  font-style: italic;
+  font-size: 12px;
+}
+.dp-contact[data-theme="retro"] .dp-actions button {
+  border-radius: 22px 22px 4px 4px;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+.dp-contact[data-theme="retro"] .dp-card-footer {
+  border-top: 3px double var(--dp-rule);
+  justify-content: center;
+  text-align: center;
+}
+@media (max-width: 800px) {
+  .dp-layout {
+    grid-template-columns: 1fr;
+  }
+  .dp-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 22px;
+  }
+  .dp-controls > label {
+    grid-row: 1;
+  }
+  .dp-controls > select {
+    grid-row: 2;
+  }
+  .dp-appearance,
+  .dp-selection,
+  .dp-caption {
+    grid-column: 1 / -1;
+  }
+  .dp-stage {
+    padding: 26px;
+  }
+}
+@media (max-width: 430px) {
+  .dp-page {
+    width: calc(100% - 32px);
+    padding-top: 30px;
+  }
+  .dp-intro h1 {
+    font-size: 35px;
+  }
+  .dp-controls {
+    padding: 20px;
+    gap: 0 14px;
+  }
+  .dp-stage {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .dp-card-masthead {
+    padding: 20px;
+  }
+  .dp-identity {
+    padding: 24px 20px 0;
+  }
+  .dp-bio {
+    margin-inline: 20px;
+  }
+  .dp-details {
+    grid-template-columns: 1fr;
+    margin-inline: 20px;
+  }
+  .dp-actions {
+    margin-inline: 20px;
+  }
+  .dp-actions button {
+    padding: 12px;
+    font-size: 13px;
+  }
+  .dp-card-footer {
+    padding-inline: 20px;
+  }
+  .dp-contact[data-theme="professional"] .dp-identity {
+    padding-left: 15px;
+  }
+  .dp-contact[data-theme="playful"] h2 {
+    font-size: 34px;
+  }
+  .dp-contact[data-theme="backstage"] .dp-identity {
+    padding-inline: 20px;
+  }
+  .dp-contact[data-theme="backstage"] h2 {
+    font-size: 36px;
+  }
+  .dp-contact[data-theme="backstage"] .dp-details > div {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .dp-contact[data-theme="industrial"] .dp-details {
+    margin-inline: 0;
+  }
+  .dp-contact[data-theme="industrial"] .dp-details > div {
+    padding-inline: 20px;
+    border-right: 0;
+  }
+  .dp-contact[data-theme="industrial"] .dp-details > div + div {
+    border-top: 1px solid var(--dp-rule);
+  }
+  .dp-contact[data-theme="retro"] h2 {
+    font-size: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dp-contact *,
+  .dp-controls * {
+    transition: none;
+  }
+}

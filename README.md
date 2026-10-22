@@ -1,13 +1,17 @@
-# HelloCuff coming soon
+# HelloCuff UAT frontend source
 
-A simple static introduction to HelloCuff, a business card for your wrist.
+This branch checkpoints the reviewed sales site and customer portal frontend. The repository's `main` branch retains the original coming-soon site and remains the GitHub Pages source. This branch adds no publishing workflow and does not deploy production.
 
-Open `index.html` or serve this directory with any static web server. No build step, dependencies, analytics, or form service is required.
+The relative `portal/`, `website/` and `legal/` layout is intentional. The functions directory here contains only shared validation/catalog data; the privileged API, business records and deployment tooling remain outside this public export. The current backend and Firebase configuration are required to use account features on the authorized UAT host.
 
-Current working colors selected by Theo: navy `#142D55`, cobalt `#275EFE`, sky `#B9DEFF`, ice `#F4F8FF`. Original evergreen/cream/lime direction remains in Git history.
+From `portal/`, with Node22 or newer:
 
-Typography selected for now: Outfit for the text wordmark, headings and body. Unmodified font files and their licenses are in `fonts/`. Open `font-preview.html` to compare Outfit, Plus Jakarta Sans and Space Grotesk.
+```powershell
+npm ci
+$env:HELLOCUFF_PHOTO_STORAGE_BUCKET="hellocuff-e8dec.firebasestorage.app"
+npm run build
+```
 
-The landing page and font specimen automatically follow the browser/system light or dark preference through `prefers-color-scheme`; there is no popup or stored override. Dark mode uses a dark navy background and lighter blue text and accents.
+The build reads public Firebase initialization metadata, forces the isolated UAT entry and noindex, and writes `uat-build/`. It does not publish. No payments or real orders are enabled; no credentials are included.
 
-The header uses the selected speech-bubble/NFC logo with an outlined Outfit wordmark, with separate light and dark SVG assets. Matching SVG/ICO favicons, Apple touch artwork and 192/512px icons are included. The complete brand record and non-web exports are maintained under the project's private `branding/` folder.
+Legal sources retain owner-supplied placeholders pending launch details. Production release, payment integration and GitHub Pages changes require their own review.

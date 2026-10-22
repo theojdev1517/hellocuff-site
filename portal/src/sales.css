@@ -1,0 +1,607 @@
+.public-site {
+  --sales-accent: #214ece;
+  --sales-text: #142d55;
+  --sales-muted: #4d678d;
+  --sales-line: #d3dff0;
+  --sales-surface: #fff;
+  --sales-soft: #e8f0ff;
+  color: var(--sales-text);
+  background: #f4f8ff;
+  min-height: 100svh;
+}
+.public-site .site-header-bar {
+  background: #f4f8ff;
+}
+.public-site .site-footer {
+  color: var(--sales-muted);
+  border-color: var(--sales-line);
+  margin-top: 0;
+}
+.public-site a {
+  color: var(--sales-accent);
+}
+.sales-container {
+  width: min(1120px, calc(100% - 80px));
+  margin-inline: auto;
+}
+.sales-home h1 {
+  font-size: clamp(42px, 5.6vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+  margin: 0 0 26px;
+}
+.sales-home h1 span {
+  color: var(--sales-accent);
+  font-weight: 450;
+}
+.sales-home h2,
+.sales-faq-page h2 {
+  font-size: clamp(30px, 3.8vw, 46px);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.sales-home h3 {
+  font-size: 23px;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 16px 0 12px;
+}
+.sales-home p,
+.sales-faq-page p {
+  line-height: 1.6;
+}
+.sales-eyebrow {
+  color: var(--sales-muted);
+  font-size: 12px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  margin: 0 0 18px;
+}
+.sales-hero {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: 64px;
+  align-items: center;
+  padding-block: 70px 66px;
+}
+.sales-lead {
+  font-size: clamp(21px, 2.3vw, 27px);
+  line-height: 1.45 !important;
+  font-weight: 450;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.sales-intro {
+  color: var(--sales-muted);
+  max-width: 430px;
+  font-size: 17px;
+}
+.sales-free-promise {
+  margin-top: 24px;
+  max-width: 420px;
+}
+.sales-free-promise > p {
+  color: var(--sales-accent);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 6px;
+}
+.sales-free-promise > span {
+  color: var(--sales-muted);
+  font-size: 14px;
+}
+.sales-price-label {
+  color: var(--sales-muted);
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+.sales-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  margin-top: 28px;
+}
+.public-site .sales-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  min-height: 48px;
+  padding: 13px 22px;
+  border-radius: 14px;
+  background: #275efe;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.public-site .sales-button:hover {
+  background: #1e4bd5;
+}
+.sales-button span {
+  font-size: 20px;
+  line-height: 1;
+}
+.sales-text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 12px;
+  font-weight: 550;
+}
+.sales-cuff {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  color: #142d55;
+}
+.sales-cuff svg {
+  width: 150px;
+  height: 94px;
+  flex-shrink: 0;
+}
+.sales-cuff > span {
+  font-size: 12px;
+  color: var(--sales-muted);
+  max-width: 80px;
+}
+.sales-example {
+  margin: 0;
+  max-width: 440px;
+  width: 100%;
+  justify-self: center;
+  scroll-margin-top: 110px;
+}
+.sales-example figcaption {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 14px;
+  color: var(--sales-muted);
+}
+.sales-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #275efe;
+}
+.sales-example-card {
+  border: 1px solid #c2d2eb;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 28px 60px -30px #1b417340;
+  overflow: hidden;
+  color: #142d55;
+}
+.sales-example-cover {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 122px;
+  padding: 25px 28px;
+  background: #d8ecff;
+  font-size: 24px;
+  font-weight: 550;
+  letter-spacing: -0.03em;
+}
+.sales-avatar {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  margin: -30px 0 16px 28px;
+  position: relative;
+  border: 5px solid #fff;
+  background: #275efe;
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sales-example-copy {
+  padding: 0 28px 20px;
+}
+.sales-example-name {
+  font-size: 30px;
+  line-height: 1.15 !important;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin-bottom: 8px;
+}
+.sales-example-title {
+  color: #4d678d;
+  font-size: 14px;
+}
+.sales-example-copy > p:not([class]) {
+  font-size: 15px;
+}
+.sales-example dl {
+  border-block: 1px solid #d3dff0;
+  padding-block: 4px;
+  margin: 20px 0 15px;
+}
+.sales-example dl > div {
+  padding-block: 10px;
+}
+.sales-example dt {
+  color: #4d678d;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+.sales-example dd {
+  margin: 0;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.sales-example-note {
+  font-size: 12px;
+  color: #4d678d;
+  margin-bottom: 0;
+}
+.sales-how {
+  padding-block: 62px;
+  background: var(--sales-soft);
+  scroll-margin-top: 88px;
+}
+.sales-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 0;
+  margin: 38px 0 22px;
+  list-style: none;
+}
+.sales-steps li {
+  min-width: 0;
+}
+.sales-step-number {
+  font-size: 13px;
+  color: var(--sales-accent);
+  border-bottom: 2px solid currentColor;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+.sales-steps p,
+.sales-benefit-grid p {
+  color: var(--sales-muted);
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.sales-benefits {
+  padding-block: 75px;
+}
+.sales-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 36px;
+}
+.sales-benefit-grid article {
+  background: var(--sales-surface);
+  border: 1px solid var(--sales-line);
+  border-radius: 22px;
+  padding: 28px;
+  min-width: 0;
+}
+.sales-benefit-grid article > span {
+  display: inline-grid;
+  place-items: center;
+  color: var(--sales-accent);
+  background: var(--sales-soft);
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  font-size: 23px;
+}
+.sales-offer {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  padding: 44px 48px;
+  border-radius: 28px;
+  border: 1px solid var(--sales-line);
+  background: var(--sales-surface);
+}
+.sales-offer-copy > p:last-child {
+  color: var(--sales-muted);
+  max-width: 450px;
+  margin-bottom: 0;
+}
+.sales-offer-action {
+  align-self: center;
+  max-width: 360px;
+  justify-self: center;
+}
+.sales-price {
+  font-size: 52px;
+  letter-spacing: -0.055em;
+  line-height: 1 !important;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.sales-shipping {
+  color: var(--sales-accent);
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+.sales-faq {
+  padding-block: 75px 20px;
+}
+.sales-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.sales-section-heading h2 {
+  margin-bottom: 0;
+}
+.sales-faq-list {
+  border-top: 1px solid var(--sales-line);
+}
+.sales-faq-list details {
+  border-bottom: 1px solid var(--sales-line);
+  scroll-margin-top: 110px;
+}
+.sales-faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  list-style: none;
+  cursor: pointer;
+  min-height: 64px;
+  padding: 20px 0;
+  font-size: 18px;
+  font-weight: 550;
+  line-height: 1.35;
+}
+.sales-faq-list summary::-webkit-details-marker {
+  display: none;
+}
+.sales-faq-list summary > span {
+  font-size: 24px;
+  font-weight: 350;
+  width: 24px;
+  flex-shrink: 0;
+  text-align: center;
+}
+.sales-faq-list details[open] summary > span {
+  transform: rotate(45deg);
+}
+.sales-faq-list details p {
+  color: var(--sales-muted);
+  margin: 0;
+  padding: 0 44px 22px 0;
+  max-width: 780px;
+  font-size: 16px;
+}
+.sales-closing {
+  text-align: center;
+  padding-block: 68px;
+}
+.sales-closing h2 {
+  font-size: clamp(34px, 4vw, 50px);
+}
+.sales-closing > p:last-child {
+  margin-top: 18px;
+  color: var(--sales-muted);
+  font-size: 14px;
+}
+.sales-faq-page {
+  max-width: 850px;
+  padding-block: 36px 70px;
+}
+.sales-faq-intro {
+  padding-block: 35px 20px;
+  max-width: 650px;
+}
+.sales-faq-intro h1 {
+  font-size: clamp(44px, 6vw, 64px);
+  margin-bottom: 24px;
+}
+.sales-faq-intro > p:last-child {
+  color: var(--sales-muted);
+}
+.sales-faq-next {
+  margin-top: 45px;
+  padding: 32px;
+  background: var(--sales-surface);
+  border: 1px solid var(--sales-line);
+  border-radius: 22px;
+}
+.sales-faq-next h2 {
+  font-size: 30px;
+}
+.sales-faq-next > p {
+  color: var(--sales-muted);
+  font-size: 13px;
+  margin: 18px 0 0;
+}
+.sales-skip {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  transform: translateY(-180%);
+  background: var(--sales-surface);
+  padding: 12px 18px;
+  border: 1px solid var(--sales-line);
+  border-radius: 10px;
+}
+.sales-skip:focus {
+  transform: translateY(0);
+}
+@media (max-width: 850px) {
+  .sales-hero {
+    gap: 32px;
+  }
+  .sales-hero h1 {
+    font-size: 48px;
+  }
+  .sales-steps {
+    gap: 24px;
+  }
+  .sales-benefit-grid {
+    gap: 16px;
+  }
+  .sales-benefit-grid article {
+    padding: 22px;
+  }
+}
+@media (max-width: 650px) {
+  .sales-container {
+    width: calc(100% - 40px);
+  }
+  .sales-hero {
+    grid-template-columns: 1fr;
+    padding-block: 44px;
+    gap: 34px;
+  }
+  .sales-hero h1 {
+    font-size: clamp(40px, 10vw, 56px);
+  }
+  .sales-intro {
+    max-width: 100%;
+  }
+  .sales-cuff {
+    margin-top: 20px;
+  }
+  .sales-example {
+    max-width: 420px;
+  }
+  .sales-how {
+    padding-block: 44px;
+  }
+  .sales-steps,
+  .sales-benefit-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .sales-steps {
+    margin-top: 30px;
+  }
+  .sales-steps h3 {
+    margin-top: 12px;
+  }
+  .sales-benefits {
+    padding-block: 48px;
+  }
+  .sales-benefit-grid {
+    margin-top: 26px;
+    gap: 14px;
+  }
+  .sales-offer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 28px;
+  }
+  .sales-offer-action {
+    max-width: 100%;
+    justify-self: stretch;
+  }
+  .sales-section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .sales-faq {
+    padding-top: 48px;
+  }
+  .sales-faq-list summary {
+    font-size: 17px;
+    gap: 16px;
+  }
+  .sales-faq-list details p {
+    padding-right: 8px;
+  }
+  .sales-closing {
+    padding-block: 48px;
+  }
+  .sales-faq-next {
+    padding: 24px;
+  }
+}
+@media (max-width: 340px) {
+  .sales-container {
+    width: calc(100% - 32px);
+  }
+  .sales-hero h1 {
+    font-size: 38px;
+  }
+  .sales-example-copy {
+    padding-inline: 20px;
+  }
+  .sales-example-cover {
+    padding-inline: 20px;
+  }
+  .sales-avatar {
+    margin-left: 20px;
+  }
+  .sales-example-name {
+    font-size: 27px;
+  }
+  .sales-offer {
+    padding: 22px;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .public-site {
+    --sales-text: #e7f0ff;
+    --sales-accent: #94b9ff;
+    --sales-muted: #a6b9d5;
+    --sales-line: #304565;
+    --sales-surface: #12213a;
+    --sales-soft: #162d50;
+    background: #0c1425;
+  }
+  .public-site .site-header-bar {
+    background: #0c1425;
+    border-color: var(--sales-line);
+  }
+  .public-site :focus-visible {
+    outline-color: #ffca87;
+  }
+  .public-site .sales-button {
+    color: #fff;
+    background: #275efe;
+  }
+  .public-site .sales-button:hover {
+    background: #1e4bd5;
+  }
+  .public-site .site-header .account-menu-toggle,
+  .public-site .site-header .account-menu-panel {
+    background: var(--sales-surface);
+    color: var(--sales-text);
+    border-color: var(--sales-line);
+  }
+  .public-site .site-header .account-menu-toggle:hover {
+    background: var(--sales-soft);
+  }
+  .public-site .site-header .account-menu-panel a,
+  .public-site .site-header .account-menu-panel button {
+    color: var(--sales-text);
+  }
+  .public-site .site-header .account-menu-panel a:hover,
+  .public-site .site-header .account-menu-panel button:hover {
+    background: var(--sales-soft);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-site *,
+  .public-site *::before,
+  .public-site *::after {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}

@@ -1,0 +1,98 @@
+.photo-editor {
+  border: 1px solid #d5def0;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.photo-editor h3 {
+  margin-top: 0;
+}
+.photo-editor p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.photo-editor .photo-help {
+  color: #53647c;
+  font-size: 0.8rem;
+}
+.photo-current {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  margin: 12px 0;
+}
+.photo-file {
+  display: block;
+}
+.photo-file input {
+  display: block;
+  margin: 8px 0;
+  max-width: 100%;
+}
+.photo-crop {
+  display: grid;
+  gap: 10px;
+  max-width: 360px;
+  margin: 16px 0;
+}
+.photo-crop canvas {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid #98afd5;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.photo-crop canvas[data-dragging="true"] {
+  cursor: grabbing;
+}
+.photo-crop canvas[aria-disabled="true"] {
+  cursor: default;
+}
+.photo-crop canvas:focus-visible {
+  outline: 3px solid #2452b9;
+  outline-offset: 4px;
+}
+.photo-editor .photo-gesture-help {
+  margin: 4px 0;
+}
+.photo-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.photo-zoom-controls button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 6px 14px;
+  font-size: 1.3rem;
+}
+.photo-zoom-controls output {
+  min-width: 4ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.photo-transform-controls button {
+  min-height: 44px;
+  padding: 8px 12px;
+}
+.photo-editor .photo-transform-status {
+  font-size: 0.8rem;
+  margin: 0;
+}
+.photo-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.photo-error {
+  color: #a6172a;
+  font-weight: 600;
+}
+
+.photo-pan-controls button{min-height:44px;min-width:44px;padding:8px 12px}
