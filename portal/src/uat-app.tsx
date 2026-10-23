@@ -119,8 +119,8 @@ function useImage(loader: (() => Promise<Uint8Array>) | null, key: string) {
     retry: () => setAttempt((n) => n + 1),
   };
 }
-function PlanPicker({config,onPick,currentPlan,currentInterval}:{config:Config;onPick:(s:Selection)=>void;currentPlan?:PlanId;currentInterval?:Selection['interval']}) {
- return <main className="plans-shell uc-plan-picker"><h1>{currentPlan?'Manage your plan':'Choose your plan'}</h1><p>Your networking bracelet is {money(config.braceletCents)}, with Free Shipping.</p><PlanCards config={config} onStart={onPick} currentPlan={currentPlan} currentInterval={currentInterval}/><p><AppLink to="/app/design-preview">Explore themes and colors</AppLink></p></main>;
+function PlanPicker({config,onPick,currentPlan,currentInterval,selection}:{config:Config;onPick:(s:Selection)=>void;currentPlan?:PlanId;currentInterval?:Selection['interval'];selection?:Selection}) {
+ return <main className="plans-shell uc-plan-picker"><h1>{currentPlan?'Manage your plan':'Choose your plan'}</h1><p>Your networking bracelet is {money(config.braceletCents)}, with Free Shipping.</p><PlanCards config={config} onStart={onPick} currentPlan={currentPlan} currentInterval={currentInterval} selection={selection}/><p><AppLink to="/app/design-preview">Explore themes and colors</AppLink></p></main>;
 }
 function UatPublic({
   id,
@@ -370,6 +370,7 @@ function Editor({
     setNotice("");
     setErrors({});
   };
+  const profileManager = (plan.profileLimit>1&&<section className="panel uc-profile-manager" aria-label="Manage profiles"><h2 id="profile-manager-heading" tabIndex={-1}>Your profiles</h2><p>One bracelet link; choose which saved profile visitors see. Activate publishes that profile after verification.</p><ul className="uc-profile-list">{state.profiles.map(p=><li key={p.id}><div><strong>{p.label}</strong>{p.id===a.activeProfileId&&<span className="hint"> Active</span>}</div><div className="button-row"><button disabled={busy} onClick={()=>switchTo(p.id)}>Edit <span className="sr-only">{p.label}</span></button><button disabled={busy||dirty} onClick={()=>{setRenameId(p.id);setRenameLabel(p.label);}}>Rename <span className="sr-only">{p.label}</span></button><button disabled={busy||p.id===a.activeProfileId} onClick={()=>void run(async()=>{if(dirty)throw Error("Save or discard your edits before activating another profile.");if(!await publishSaved(p.id))return;await reload();same();switchTo(p.id);setNotice("Active profile updated at the same bracelet link.");})}>Activate <span className="sr-only">{p.label}</span></button><button disabled={busy||state.profiles.length<=1||p.id===a.activeProfileId} onClick={()=>setConfirmation({title:'Delete profile?',body:'Delete '+p.label+'? Your active profile will be retained.',label:'Delete profile',action:async()=>{if(dirty)throw Error('Save or discard your edits before deleting a profile.');await api.remove(p.id);same();setDirty(false);setSelected(a.activeProfileId);await reload();setNotice('Profile deleted. Your active profile is retained.');requestAnimationFrame(()=>document.getElementById('profile-manager-heading')?.focus());}})}>Delete <span className="sr-only">{p.label}</span></button></div>{renameId===p.id&&<form onSubmit={e=>{e.preventDefault();void run(async()=>{if(dirty)throw Error("Save or discard your edits before renaming this profile.");same();await api.rename(p.id,renameLabel,p.revision);same();setRenameId(null);await reload();setNotice("Profile renamed.");});}}><label>New profile name<input autoFocus required maxLength={40} value={renameLabel} onChange={e=>setRenameLabel(e.target.value)}/></label><div className="button-row"><button disabled={busy||dirty} type="submit">Save name</button><button type="button" disabled={busy} onClick={()=>setRenameId(null)}>Cancel rename</button></div></form>}</li>)}</ul><span className="uc-profile-limit" aria-label={state.profiles.length>=plan.profileLimit?"Profile limit reached. Edit or remove an inactive profile to add another.":undefined} tabIndex={state.profiles.length>=plan.profileLimit?0:undefined} title={state.profiles.length>=plan.profileLimit?'Your plan includes up to 3 profiles. Edit or remove an inactive profile to add another.':undefined}><button disabled={busy||state.profiles.length>=plan.profileLimit} onClick={()=>void run(async()=>{if(dirty)throw Error("Save or discard changes before adding a profile.");const label=`Profile ${state.profiles.length+1}`,result=await api.addProfile(label);same();await reload();setSelected(result.id);setDraft(emptyProfile(result.id,label));setNotice("New profile ready to edit.");})}>Add profile</button></span><p className="hint">Keep at least one profile. Activate another profile before deleting the active one.</p></section>);
   return (
     <main className="uc-editor">
       <div className="uc-editor-heading">
@@ -395,9 +396,9 @@ function Editor({
           </p>
         </div>
       </div>
-      {plan.profileLimit>1&&<section className="panel uc-profile-manager" aria-label="Manage profiles"><h2 id="profile-manager-heading" tabIndex={-1}>Your profiles</h2><p>One bracelet link; choose which saved profile visitors see. Activate publishes that profile after verification.</p><ul className="uc-profile-list">{state.profiles.map(p=><li key={p.id}><div><strong>{p.label}</strong>{p.id===a.activeProfileId&&<span className="hint"> Active</span>}</div><div className="button-row"><button disabled={busy} onClick={()=>switchTo(p.id)}>Edit <span className="sr-only">{p.label}</span></button><button disabled={busy||dirty} onClick={()=>{setRenameId(p.id);setRenameLabel(p.label);}}>Rename <span className="sr-only">{p.label}</span></button><button disabled={busy||p.id===a.activeProfileId} onClick={()=>void run(async()=>{if(dirty)throw Error("Save or discard your edits before activating another profile.");if(!await publishSaved(p.id))return;await reload();same();switchTo(p.id);setNotice("Active profile updated at the same bracelet link.");})}>Activate <span className="sr-only">{p.label}</span></button><button disabled={busy||state.profiles.length<=1||p.id===a.activeProfileId} onClick={()=>setConfirmation({title:'Delete profile?',body:'Delete '+p.label+'? Your active profile will be retained.',label:'Delete profile',action:async()=>{if(dirty)throw Error('Save or discard your edits before deleting a profile.');await api.remove(p.id);same();setDirty(false);setSelected(a.activeProfileId);await reload();setNotice('Profile deleted. Your active profile is retained.');requestAnimationFrame(()=>document.getElementById('profile-manager-heading')?.focus());}})}>Delete <span className="sr-only">{p.label}</span></button></div>{renameId===p.id&&<form onSubmit={e=>{e.preventDefault();void run(async()=>{if(dirty)throw Error("Save or discard your edits before renaming this profile.");same();await api.rename(p.id,renameLabel,p.revision);same();setRenameId(null);await reload();setNotice("Profile renamed.");});}}><label>New profile name<input autoFocus required maxLength={40} value={renameLabel} onChange={e=>setRenameLabel(e.target.value)}/></label><div className="button-row"><button disabled={busy||dirty} type="submit">Save name</button><button type="button" disabled={busy} onClick={()=>setRenameId(null)}>Cancel rename</button></div></form>}</li>)}</ul><button disabled={busy||state.profiles.length>=plan.profileLimit} onClick={()=>void run(async()=>{if(dirty)throw Error("Save or discard changes before adding a profile.");const label=`Profile ${state.profiles.length+1}`,result=await api.addProfile(label);same();await reload();setSelected(result.id);setDraft(emptyProfile(result.id,label));setNotice("New profile ready to edit.");})}>Add profile</button><p className="hint">Keep at least one profile. Activate another profile before deleting the active one.</p></section>}
+
       {Object.keys(profileErrors(draft,plan)).some(k=>["design","cta","logo"].includes(k))&&<div className="notice"><p>Your saved choices are retained; some are outside the current plan.</p><button onClick={()=>change({...draft,logo:plan.logo?draft.logo:null,design:{...draft.design,theme:plan.themes[0],color:plan.colors[0],font:plan.fonts[0],ctaLabel:plan.cta?draft.design.ctaLabel:"",ctaUrl:plan.cta?draft.design.ctaUrl:""}})}>Use style included in {title(a.testPlan)}</button></div>}
-      <ProfileDesigner key={selected} draft={draft} plan={plan} planId={a.testPlan} config={state.config} onChange={change} photo={photo.url} logo={logo.url} busy={busy} errors={errors} mode="editor" startStep="preview" finishLabel="Save changes" onFinish={()=>void run(async()=>{await save();})} onPhoto={async image=>{if(lock.current)throw Error("Wait for the current operation, then retry this crop.");lock.current=true;setBusy(true);try{same();const result=await api.upload("photo",image.web,image.vcf);same();setDraft(current=>({...current,photo:result.id}));setDirty(true);setErrors({});}finally{lock.current=false;if(authApi.auth.currentUser?.uid===session)setBusy(false);}}} onRemovePhoto={()=>change({...draft,photo:null})} onLogo={async file=>{if(lock.current)throw Error("Wait for the current operation, then retry this logo.");lock.current=true;setBusy(true);try{logoController.current?.abort();logoController.current=new AbortController();const blob=await optimizeLogo(file,state.config.photo,logoController.current.signal);same();const result=await api.upload("logo",blob,null);same();setDraft(current=>({...current,logo:result.id}));setDirty(true);setErrors({});}finally{lock.current=false;if(authApi.auth.currentUser?.uid===session)setBusy(false);}}} onRemoveLogo={()=>change({...draft,logo:null})} preview={<UatCard profile={draft} branding={plan.branding} photo={photo.url} logo={logo.url} preview onDownload={async()=>download({...draft,content:normalizeContent(draft.content)},a.publicId,draft.photo?await api.privateImage(draft.photo,"vcf"):undefined)}/>}/>
+      <ProfileDesigner intro={profileManager} key={selected} draft={draft} plan={plan} planId={a.testPlan} config={state.config} onChange={change} photo={photo.url} logo={logo.url} busy={busy} errors={errors} mode={selectedProfile.revision===0&&!selectedProfile.content.name?"guided":"editor"} startStep={selectedProfile.revision===0&&!selectedProfile.content.name?"contact":"preview"} finishLabel="Save my card" onFinish={()=>void run(async()=>{await save();})} onPhoto={async image=>{if(lock.current)throw Error("Wait for the current operation, then retry this crop.");lock.current=true;setBusy(true);try{same();const result=await api.upload("photo",image.web,image.vcf);same();setDraft(current=>({...current,photo:result.id}));setDirty(true);setErrors({});}finally{lock.current=false;if(authApi.auth.currentUser?.uid===session)setBusy(false);}}} onRemovePhoto={()=>change({...draft,photo:null})} onLogo={async file=>{if(lock.current)throw Error("Wait for the current operation, then retry this logo.");lock.current=true;setBusy(true);try{logoController.current?.abort();logoController.current=new AbortController();const blob=await optimizeLogo(file,state.config.photo,logoController.current.signal);same();const result=await api.upload("logo",blob,null);same();setDraft(current=>({...current,logo:result.id}));setDirty(true);setErrors({});}finally{lock.current=false;if(authApi.auth.currentUser?.uid===session)setBusy(false);}}} onRemoveLogo={()=>change({...draft,logo:null})} preview={<UatCard profile={draft} branding={plan.branding} photo={photo.url} logo={logo.url} preview onDownload={async()=>download({...draft,content:normalizeContent(draft.content)},a.publicId,draft.photo?await api.privateImage(draft.photo,"vcf"):undefined)}/>}/>
       {(photo.error||logo.error)&&<div role="status"><p>A saved image could not load. Your saved image is retained.</p><button onClick={()=>{photo.retry();logo.retry();}}>Retry saved images</button></div>}
       <div className="uc-view-card"><AppLink to={`/uat/p/${a.publicId}`} target="_blank" rel="noopener noreferrer">View my card ↗</AppLink></div><div className="button-row uc-publish-actions"><button disabled={busy||!dirty} onClick={()=>state.publication?.published&&selected===a.activeProfileId?void publish():void run(async()=>{await save();})}>Save changes</button><button className="primary" disabled={busy||!user.emailVerified} onClick={()=>void publish()}>{selected===a.activeProfileId?"Publish card":"Make active and publish"}</button><button disabled={busy||!state.publication?.published} onClick={()=>void run(async()=>{await api.publish(a.activeProfileId,false);await reload();setNotice("Your card is unpublished. Saved drafts are retained.");})}>Unpublish</button><button disabled={busy||!dirty} onClick={()=>setConfirmation({title:'Discard edits?',body:'Your unsaved edits will be discarded. Your saved profile stays unchanged.',label:'Discard edits',action:async()=>{same();setDirty(false);setDraft(clone(selectedProfile));setNotice('');}})}>Discard edits</button></div><p className="notice" role="status">{busy?"Working...":notice}</p>{confirmation&&<Modal title={confirmation.title} onClose={()=>{if(!busy)setConfirmation(null);}}><p>{confirmation.body}</p><div className="button-row"><button disabled={busy} className="primary" onClick={()=>void run(async()=>{await confirmation.action();same();setConfirmation(null);})}>{busy?"Working...":confirmation.label}</button><button disabled={busy} onClick={()=>setConfirmation(null)}>Keep editing</button></div></Modal>}
     </main>
@@ -435,7 +436,7 @@ function SandboxApp() {
     [cart, setCartState] = useState<Cart | null>(
       () =>
         readCart(sessionStorage) ||
-        newCart({ plan: "free", interval: "monthly", backup: false }),
+        newCart({ plan: "standard", interval: "monthly", backup: false }),
     ),
     [setup,setSetupState]=useState<SetupDraft>(()=>readSetup(sessionStorage)||newSetup()),
     setupRef=useRef(setup),
@@ -503,7 +504,7 @@ function SandboxApp() {
         if(pending?.complete && pending.customerUid===uid && pending.kind==="initial" && value.account?.initialOrderId===pending.id){await importInitialDesign(uid,pending.id);value=await api.load();}
         if (live && authApi.auth.currentUser?.uid === uid) {
           setStored({ uid, value });setConfig(value.config);const design=readSetup(sessionStorage);if(design){setupRef.current=design;setSetupState(design);}
-          if(["/app/signup","/app/sign-in"].includes(location.pathname))navigate(design?.ready&&pending&&!value.account?"/app/checkout":value.account?"/app/profile":"/app/plans",true);
+          if(["/app/signup","/app/sign-in"].includes(location.pathname))navigate(value.account?"/app/profile":pending?"/app/checkout":"/app/plans",true);
           performance.measure("hellocuff-uat-owner-load", {
             start: started,
             end: performance.now(),
@@ -522,7 +523,7 @@ function SandboxApp() {
     if (route.path === "/app")
       navigate(user ? "/app/profile" : "/app/sign-in", true);
     if (user && owner && ["/app/signup", "/app/sign-in"].includes(route.path))
-      navigate(owner.account ? "/app/profile" : setup.ready ? "/app/checkout" : "/app/plans", true);
+      navigate(owner.account ? "/app/profile" : cart ? "/app/checkout" : "/app/plans", true);
   }, [ready, user?.uid, !!owner, route.path]);
   useEffect(() => {
     if (!user) return;
@@ -537,8 +538,8 @@ function SandboxApp() {
   }, [user?.uid, reload]);
   const choose = (selection: Selection) => {
     if(dirty&&!confirm("Discard unsaved edits and choose a plan?"))return;
-    setDirty(false);setEditorEpoch(x=>x+1);const kind=owner?.account?"plan-change":"initial";setCart({...newCart({...selection,backup:false},kind),customerUid:user?.uid||null});
-    if(kind==="initial"){if(setup.boundUid&&setup.boundUid!==user?.uid)setSetup(newSetup());navigate("/app/design");}else navigate("/app/checkout");
+    setDirty(false);setEditorEpoch(x=>x+1);const kind=owner?.account?"plan-change":"initial",previous=cart&&cart.kind===kind&&(!cart.customerUid||cart.customerUid===user?.uid)?cart:null;setCart({...previous||newCart(selection,kind),selection:{...selection,backup:kind==="initial"&&previous?.selection.backup||false},kind,customerUid:user?.uid||null,complete:false,accepted:false});
+    navigate("/app/checkout");
   };
   const run = async (operation: () => Promise<void>) => {
     if (lock.current) return;
@@ -560,7 +561,7 @@ function SandboxApp() {
     const complete={...cart,complete:true,customerUid:uid,committedUid:uid};setCart(complete);
     if(paymentMode==='stripe-sandbox'){
       if(cart.kind==='plan-change'&&owner?.account?.billing?.subscriptionId){if(cart.selection.plan==='free'){await integrations.cancelRenewal();setNotice('Renewal is stopped. Your paid access continues through the paid period; saved profiles are retained.');navigate('/app/profile',true);return;}await integrations.changePlan(cart.selection);setNotice('Your billing change is pending or scheduled. Saved profiles are retained.');navigate('/app/profile',true);return;}
-      const r=await integrations.checkout(cart);if(r.url){location.assign(r.url);return;}if(r.resumeOrderId){const old=await integrations.order(r.resumeOrderId);setCart({...cart,id:r.resumeOrderId,selection:old.order.selection,shipping:old.order.shipping,address:old.order.shipping?.address||cart.address});throw Error('Your earlier checkout is ready to resume. Continue again.');}await reload();navigate('/app/profile',true);return;
+      const r=await integrations.checkout(cart);if(r.url){location.assign(r.url);return;}if(r.status==='processing'&&r.orderId){navigate('/app/payment-return?order='+r.orderId,true);return;}if(r.resumeOrderId){const old=await integrations.order(r.resumeOrderId);setCart({...cart,id:r.resumeOrderId,selection:old.order.selection,shipping:old.order.shipping,address:old.order.shipping?.address||cart.address});throw Error('Your earlier checkout is ready to resume. Continue again.');}await reload();navigate('/app/profile',true);return;
     }
     const result=await api.order(cart.id,cart.selection,cart.shipping,cart.kind);if(authApi.auth.currentUser?.uid!==uid)throw Error("Your account changed.");
     setCart({...complete,id:result.order.id,selection:result.order.selection});
@@ -612,16 +613,15 @@ function SandboxApp() {
   else if(route.path === "/app/payment-return"&&user)content=<PaymentReturn id={new URLSearchParams(route.search).get("order")||""} load={integrations.order} onConfirmed={async id=>{const uid=user.uid;if(authApi.auth.currentUser?.uid!==uid)throw Error("Account changed.");await importInitialDesign(uid,id);if(authApi.auth.currentUser?.uid!==uid)throw Error("Account changed.");sessionStorage.setItem("hellocuff-verification-due-"+uid,"1");await reload();navigate("/app/profile",true);}}/>;
   else if (route.path === "/app/reset") content = <AuthForm mode="reset" />;
   else if(route.path === "/app/design" && user && owner?.account && cart?.kind === "initial")content=<OrderConfirmation orderId={owner.account.initialOrderId||owner.account.lastOrderId} load={api.getOrder}/>;
-  else if(route.path === "/app/design" && config && cart)content=<AnonymousDesigner config={config} selection={cart.selection} setup={setup.boundUid&&setup.boundUid!==user?.uid?newSetup():setup} setSetup={setSetup} onContinue={()=>navigate(user?"/app/checkout":"/app/signup")}/>;
+  else if(route.path === "/app/design" && config && cart)content=<main className="auth-shell"><h1>Choose your bracelet and plan first</h1><AppLink className="primary" to="/app/checkout">Continue to checkout</AppLink></main>;
   else if(route.path === "/app/checkout" && config){
     if(!ready)content=<main className="auth-shell"><p>Checking your sign-in…</p></main>;
-    else if(!user)content=<AuthForm mode="signup" afterSignup="/app/checkout"/>;
-    else if(!owner)content=<main className="auth-shell"><p>{loadError||"Checking your existing checkout…"}</p></main>;
-    else if(owner.account && cart?.kind!=="plan-change")content=<OrderConfirmation orderId={owner.account.initialOrderId||owner.account.lastOrderId} load={api.getOrder}/>;
-    else content=<UatCheckout paymentMode={paymentMode} config={config} cart={cart||newCart({plan:"free",interval:"monthly",backup:false})} setCart={setCart} onComplete={checkout} busy={busy}/>;
+    else if(user&&!owner)content=<main className="auth-shell"><p>{loadError||"Checking your existing checkout…"}</p></main>;
+    else if(owner?.account && cart?.kind!=="plan-change")content=<OrderConfirmation orderId={owner.account.initialOrderId||owner.account.lastOrderId} load={api.getOrder}/>;
+    else content=<UatCheckout paymentMode={paymentMode} config={config} cart={cart||newCart({plan:"free",interval:"monthly",backup:false})} setCart={setCart} onComplete={checkout} busy={busy} accountEmail={user?.email||undefined}/>;
   }
   else if (route.path === "/app/plans" && config)
-    content = <PlanPicker config={config} onPick={choose} currentPlan={owner?.account?.testPlan} currentInterval={owner?.account?.interval}/>;
+    content = <PlanPicker config={config} onPick={choose} currentPlan={owner?.account?.testPlan} currentInterval={owner?.account?.interval} selection={owner?.account?(cart?.kind==="plan-change"?cart.selection:undefined):cart?.selection}/>;
   else if (["/app/plans", "/app/checkout", "/app/design"].includes(route.path) && !config)
     content = (
       <main className="auth-shell">
@@ -646,7 +646,7 @@ function SandboxApp() {
     );
   else if (!user)
     content = (
-      <AuthForm mode={route.path === "/app/signup" ? "signup" : "login"} afterSignup={setup.ready?"/app/checkout":"/app/plans"}/>
+      <AuthForm mode={route.path === "/app/signup" ? "signup" : "login"} afterSignup={cart?"/app/checkout":"/app/plans"} initialEmail={cart?.email||""}/>
     );
   else if (!owner)
     content = (
@@ -713,7 +713,6 @@ function SandboxApp() {
           authReady={ready}
           publicSite={true}
           publicCardPrefix="/uat/p/"
-          signupHref={!user?"/app/plans":undefined}
         />
       )}
       {authApi.emulator && (
@@ -744,7 +743,7 @@ function SandboxApp() {
         <footer className="site-footer uc-footer">
           <PolicyLink kind="privacy" label="Privacy"/>
           <PolicyLink label="Terms & acceptable use"/>
-          <span>HelloCuff · Wear it. Tap it. Say hello.</span>
+          <span className="uc-copyright">© {new Date().getFullYear()} HelloCuff</span><span>HelloCuff · Wear it. Tap it. Say hello.</span>
         </footer>
       )}
     </div>

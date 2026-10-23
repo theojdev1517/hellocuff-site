@@ -41,7 +41,7 @@ const env = {
   VITE_USE_EMULATORS: "false",
   VITE_UAT_SIMULATION: "true",
   VITE_UAT_PAYMENTS: integrations ? "stripe-sandbox" : "mock",
-  VITE_UAT_MODERATION: integrations ? "true" : "false",
+  VITE_UAT_MODERATION: "false",
   VITE_ENABLE_DESIGN_PREVIEW: "true",
   VITE_ENABLE_MOCK_CHECKOUT: "false",
   VITE_FIREBASE_PROJECT_ID: project,

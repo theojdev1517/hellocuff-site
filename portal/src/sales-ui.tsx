@@ -70,9 +70,7 @@ function ExampleCard() {
       id="example-card"
       aria-labelledby="example-caption"
     >
-      <figcaption id="example-caption">
-        <span className="sales-dot" /> Example card · fictional details
-      </figcaption>
+      <figcaption id="example-caption" className="sr-only">Example contact card</figcaption>
       <div className="sales-example-card">
         <div className="sales-example-cover">
           <span>Say hello.</span>
@@ -206,9 +204,6 @@ export function HomePage({ signedIn }: SalesProps) {
             <a className="sales-button" href="#how-it-works">
               See how it works <span aria-hidden="true">↓</span>
             </a>
-            <a className="sales-text-link" href="#example-card">
-              Explore the example
-            </a>
           </div>
           <CuffIllustration />
         </div>
@@ -236,8 +231,7 @@ export function HomePage({ signedIn }: SalesProps) {
               <span className="sales-step-number">02</span>
               <h3>Make the connection.</h3>
               <p>
-                A tap with a compatible NFC-enabled phone opens your bracelet's
-                link. You can share the link directly, too.
+                A tap opens your bracelet's link. You can share the link directly, too.
               </p>
             </li>
             <li>
@@ -286,8 +280,7 @@ export function HomePage({ signedIn }: SalesProps) {
             <span aria-hidden="true">✓</span>
             <h3>Choose what you show.</h3>
             <p>
-              Preview a private draft, leave optional details out, and publish
-              when you are ready. You can unpublish your card later.
+              Preview a private draft and publish when you’re ready. You can unpublish your card later.
             </p>
           </article>
         </div>
@@ -303,10 +296,6 @@ export function HomePage({ signedIn }: SalesProps) {
             One cuff.
             <br />A card that's yours.
           </h2>
-          <p>
-            One HelloCuff bracelet and one editable Free contact profile, with
-            an optional photo, preset colors and light or dark card styles.
-          </p>
         </div>
         <div className="sales-offer-action">
           <p className="sales-price-label">One-time bracelet purchase</p>
@@ -360,9 +349,6 @@ export function FaqPage({ signedIn }: SalesProps) {
       id="main-content"
       tabIndex={-1}
     >
-      <AppLink to="/" className="sales-text-link">
-        ← HelloCuff home
-      </AppLink>
       <div className="sales-faq-intro">
         <p className="sales-eyebrow">A little more about HelloCuff</p>
         <h1>FAQ</h1>
@@ -376,7 +362,7 @@ export function FaqPage({ signedIn }: SalesProps) {
           getting started.
         </p>
       </div>
-      <FaqList entries={faqs} />
+      <section className="sales-why"><h2>Why HelloCuff?</h2><p>A paper business card is easy to misplace, and printed details stay frozen even when your work changes. HelloCuff puts your introduction on your wrist and your current details one tap away.</p><p>Share your contact information, website and next step in one place. Update your page instead of printing another stack. Keep the conversation moving after the first hello.</p></section><FaqList entries={faqs} />
       <div className="sales-faq-next">
         <h2>Your card starts with you.</h2>
         <NextStep signedIn={signedIn} />

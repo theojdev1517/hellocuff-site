@@ -62,3 +62,16 @@
 /* Shell guidance uses semantic colors; public-card appearance stays independent. */
 .app-chrome .uc-text-button { color:var(--shell-text,#142d55)!important; }
 .app-chrome .photo-editor .photo-help { color:var(--shell-muted,#53647c); }
+
+/* Pass 3 shell state contrast and stable preview alignment. */
+.app-chrome .password-field .password-control{background:var(--shell-input);color:var(--shell-text);border-color:var(--shell-line)}
+.app-chrome .password-field .password-control>input{background:transparent;color:var(--shell-text);-webkit-text-fill-color:var(--shell-text);caret-color:var(--shell-text)}
+.app-chrome .password-field .password-toggle{color:var(--shell-text)}
+.app-chrome .password-field .password-toggle:hover:not(:disabled){background:var(--shell-bg)}
+.app-chrome .site-header .account-menu-panel :is(a,button):is(:hover,:focus,:focus-visible,[aria-current=page]){background:var(--shell-input);color:var(--shell-text)}
+.app-chrome .uc-plan-card.selected{outline:3px solid #b45107;outline-offset:4px}
+.uc-preview{align-self:start;top:100px}.uc-guided-layout{align-items:start}.uc-profile-limit{display:inline-flex}
+.uc-copyright{text-align:center;flex:1}.google-mark{vertical-align:middle;margin-inline-end:8px;flex:none}.sales-why{max-width:800px;margin-bottom:32px}
+@media(max-width:1050px){.uc-preview{top:auto}}@media(max-width:650px){.uc-footer{flex-wrap:wrap}.uc-copyright{flex-basis:100%;order:3}}
+
+.uc-profile-limit>button:disabled{pointer-events:none}

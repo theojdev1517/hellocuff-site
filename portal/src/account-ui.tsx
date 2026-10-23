@@ -14,10 +14,12 @@ export function AuthForm({
   mode,
   preparing = false,
   afterSignup = "/app/plans",
+  initialEmail = "",
 }: {
   mode: "login" | "signup" | "reset";
   preparing?: boolean;
   afterSignup?: "/app/plans" | "/app/checkout";
+  initialEmail?: string;
 }) {
   return mode === "reset" ? (
     <ResetRequestPage
@@ -29,19 +31,21 @@ export function AuthForm({
       renderLink={portalActionLink}
     />
   ) : (
-    <CredentialsForm mode={mode} preparing={preparing} afterSignup={afterSignup}/>
+    <CredentialsForm mode={mode} preparing={preparing} afterSignup={afterSignup} initialEmail={initialEmail}/>
   );
 }
 function CredentialsForm({
   mode,
   preparing = false,
   afterSignup = "/app/plans",
+  initialEmail = "",
 }: {
   mode: "login" | "signup" | "reset";
   preparing?: boolean;
   afterSignup?: "/app/plans" | "/app/checkout";
+  initialEmail?: string;
 }) {
-  const [email, setEmail] = useState(""),
+  const [email, setEmail] = useState(initialEmail),
     [password, setPassword] = useState(""),
     [confirmation, setConfirmation] = useState("");
   const [status, setStatus] = useState(""),
@@ -72,7 +76,7 @@ function CredentialsForm({
         <p className="eyebrow">Your next hello starts here</p>
         <h1>
           {mode === "signup"
-            ? "Make it yours."
+            ? afterSignup === "/app/checkout" ? "Secure your order" : "Make it yours."
             : mode === "reset"
               ? "Reset your password."
               : "Welcome back."}
@@ -80,7 +84,7 @@ function CredentialsForm({
         <p>
           {mode === "reset"
             ? "We will email a reset link if an account uses this address."
-            : "One simple contact page. Always your latest details."}
+            : ""}
         </p>
         <form
           onSubmit={(event) => {
@@ -133,12 +137,6 @@ function CredentialsForm({
               disabled={preparing}
             />
           ) : null}
-          {mode === "signup" && (
-            <p className="hint">
-              Your account email stays private. You choose a separate public
-              email later.
-            </p>
-          )}
           <button
             className="primary"
             disabled={busy || preparing || !api.configured}
@@ -160,7 +158,7 @@ function CredentialsForm({
             disabled={busy || preparing || !api.configured}
             onClick={() => void run(api.googleLogin)}
           >
-            Continue with Google
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 48 48" className="google-mark"><path fill="#4285f4" d="M43.6 20.5H24v8.1h11.3c-1 5.3-5.5 8.1-11.3 8.1a12.7 12.7 0 1 1 0-25.4c3.1 0 5.8 1.1 7.9 3.1l6-6C34.3 5.1 29.5 3 24 3a21 21 0 1 0 0 42c12.1 0 20.1-8.5 20.1-20.4 0-1.5-.2-2.8-.5-4.1Z"/><path fill="#34a853" d="M6.2 35.6 13 30.4A12.7 12.7 0 0 0 24 36.7c3.1 0 5.8-.8 7.8-2.4l6.6 5.1A20.9 20.9 0 0 1 6.2 35.6Z"/><path fill="#fbbc05" d="M3 24c0-3.4.8-6.7 2.3-9.5l7 5.2a12.8 12.8 0 0 0 .7 10.7l-6.8 5.2A20.9 20.9 0 0 1 3 24Z"/><path fill="#ea4335" d="M24 3c5.5 0 10.3 2.1 13.9 5.4l-6 6A11.3 11.3 0 0 0 24 11.3c-5.4 0-10 3.3-11.7 8.4l-7-5.2A21 21 0 0 1 24 3Z"/></svg> Continue with Google
           </button>
         )}
         <div className="text-actions">

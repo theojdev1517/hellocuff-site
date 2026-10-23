@@ -172,7 +172,7 @@ export function UatCard({
           )}
         </div>
       </article>
-      <p className="uc-powered">Powered by <a href="/">HelloCuff</a></p>{footer}
+      <p className="uc-copyright">© {new Date().getFullYear()} HelloCuff</p><p className="uc-powered">Powered by <a href="/">HelloCuff</a></p>{footer}
       </div>
     </div>
   );
